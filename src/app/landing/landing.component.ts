@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -8,12 +9,10 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
-export class LandingComponent {
-  constructor(public auth:AuthService){}
+export class LandingComponent{
+  constructor(private auth:AuthService){}
   
   login(){
-    this.auth.loginWithRedirect();
-    this.auth.logout()
-    return
+    this.auth.loginWithRedirect()
   }
 }
