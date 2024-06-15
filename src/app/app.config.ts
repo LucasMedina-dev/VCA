@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
       domain: 'dev-n0clp1iha3y7t6g5.us.auth0.com',
       clientId: 'gVVNIKhgO4o3Agz7A5BftqCvSh6UrW9J',
       authorizationParams: {
-        redirect_uri: window.location.origin + '/pickup',
+        redirect_uri: window.location.origin,
       },
     }),
   ],
