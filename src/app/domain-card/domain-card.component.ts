@@ -18,6 +18,7 @@ export class DomainCardComponent {
   
   goToDomain() {
     const domainName : String = this.cardData.domainName.toLowerCase().split(" ").join("-")
+
     this.router.navigate([`/stats/${domainName}`])
   }
 }
