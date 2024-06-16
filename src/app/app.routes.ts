@@ -7,5 +7,6 @@ export const routes: Routes = [
     {path:'', component:LandingComponent},
     {path:'pickup', component:PickupComponent},
     {path:'creation', component:CreationPageComponent},
+    {path:'stats/:name', component:CreationPageComponent},
     {path:'**', component:LandingComponent}
 ];
