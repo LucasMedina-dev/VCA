@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { VcaTitleComponent } from "../vca-title/vca-title.component";
-import { DomainCardComponent } from "../domain-card/domain-card.component";
-import { AddButtonComponent } from "../add-button/add-button.component";
+import { VcaTitleComponent } from '../../vca-title/vca-title.component';
+import { AddButtonComponent } from '../../add-button/add-button.component';
+import { DomainCardComponent } from '../../domain-card/domain-card.component';
 
 @Component({
     selector: 'app-pickup',

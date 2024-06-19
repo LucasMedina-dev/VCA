@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAuth0 } from '@auth0/auth0-angular';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
       authorizationParams: {
         redirect_uri: window.location.origin,
       },
-    }),
+    }), provideAnimationsAsync(),
   ],
 };
