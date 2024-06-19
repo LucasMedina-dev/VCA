@@ -4,7 +4,11 @@ module.exports = {
     "./src/app/**/*.{html,ts}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      dropShadow:{
+        'white': '0 0 2px lightgray'
+      }
+    },
   },
   plugins: [],
 }
