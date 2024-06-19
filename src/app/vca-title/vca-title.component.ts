@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-vca-title',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './vca-title.component.html',
   styleUrl: './vca-title.component.css'
 })
