@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { VcaTitleComponent } from "../vca-title/vca-title.component";
+import { VcaTitleComponent } from "../../vca-title/vca-title.component";
 import { NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-domain-page',
     standalone: true,
     templateUrl: './domain-page.component.html',
     styleUrl: './domain-page.component.css',
-    imports: [VcaTitleComponent, NgClass]
+    imports: [VcaTitleComponent, NgClass, RouterModule, MatIconModule]
 })
 export class DomainPageComponent {
     configOpened: boolean= false;

@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
-import { PickupComponent } from './pickup/pickup.component';
-import { CreationPageComponent } from './creation-page/creation-page.component';
-import { DomainPageComponent } from './domain-page/domain-page.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { PickupComponent } from './pages/pickup/pickup.component';
+import { CreationPageComponent } from './pages/creation-page/creation-page.component';
+import { DomainPageComponent } from './pages/domain-page/domain-page.component';
 
 export const routes: Routes = [
     {path:'', component:LandingComponent},
