@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VcaTitleComponent } from '../../vca-title/vca-title.component';
-import { AddButtonComponent } from '../../add-button/add-button.component';
-import { DomainCardComponent } from '../../domain-card/domain-card.component';
+import { AddButtonComponent } from '../domain-page/add-button/add-button.component';
+import { DomainCardComponent } from '../domain-page/domain-card/domain-card.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +17,6 @@ export class PickupComponent{
     constructor(public auth: AuthService){
         this.auth.user$.subscribe((data)=>{
             this.user=data?.email
-            console.log(data)
         })
     }       
 }
