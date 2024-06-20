@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { VcaTitleComponent } from '../../vca-title/vca-title.component';
 import { AddButtonComponent } from '../../add-button/add-button.component';
 import { DomainCardComponent } from '../../domain-card/domain-card.component';
+import { AuthService } from '@auth0/auth0-angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-pickup',
     standalone: true,
     templateUrl: './pickup.component.html',
     styleUrl: './pickup.component.css',
-    imports: [VcaTitleComponent, DomainCardComponent, AddButtonComponent]
+    imports: [VcaTitleComponent, DomainCardComponent, AddButtonComponent, CommonModule]
 })
 export class PickupComponent{
-
-    
+    user: any;
+    constructor(public auth: AuthService){
+        this.auth.user$.subscribe((data)=>{
+            this.user=data?.email
+            console.log(data)
+        })
+    }       
 }
