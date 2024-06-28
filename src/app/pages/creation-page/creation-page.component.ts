@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-
-import { VcaTitleComponent } from '../../vca-title/vca-title.component';
-import { CreationFormComponent } from '../../creation-form/creation-form.component';
-
+import { VcaTitleComponent } from '../components/vca-title/vca-title.component';
+import { CreationFormComponent } from './creation-form/creation-form.component';
 
 @Component({
     selector: 'app-creation-page',
@@ -12,5 +10,4 @@ import { CreationFormComponent } from '../../creation-form/creation-form.compone
     imports: [VcaTitleComponent, CreationFormComponent]
 })
 export class CreationPageComponent {
-
 }

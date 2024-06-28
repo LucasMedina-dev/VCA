@@ -3,6 +3,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { PickupComponent } from './pages/pickup/pickup.component';
 import { CreationPageComponent } from './pages/creation-page/creation-page.component';
 import { DomainPageComponent } from './pages/domain-page/domain-page.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 export const routes: Routes = [
     {path:'', component:LandingComponent},
