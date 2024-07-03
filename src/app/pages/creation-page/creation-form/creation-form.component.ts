@@ -1,28 +1,27 @@
-import { NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
-import { DomainService } from '../../../domain.service';
+import { noWhitespaceValidator } from '../validators/no-whitespace.validator';
 
 @Component({
   selector: 'app-creation-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, NgIf],
   templateUrl: './creation-form.component.html',
   styleUrl: './creation-form.component.css',
 })
 export class CreationFormComponent{
   domainGroup = new FormGroup({
-    domainName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(30), Validators.pattern('[a-zA-Z]*')])),
-    domainDescription: new FormControl('', Validators.compose([Validators.required, Validators.minLength(50), Validators.maxLength(400), Validators.pattern('[a-zA-Z ]*')])),
+    domainName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), noWhitespaceValidator()])),
     domainWebsite: new FormControl(''),
-    keyStatus: new FormControl(false),
+    keyStatus: new FormControl(true),
   });
-  constructor(private domainService: DomainService){}
+  constructor(){}
 
   createDomain() {
-    
   }
-
+  getField(field: string){
+    let status : boolean= (this.domainGroup.get(field)?.valid || this.domainGroup.get(field)?.value=='');
+    return status
+  }
 }
