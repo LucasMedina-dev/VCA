@@ -3,7 +3,7 @@ import { VcaTitleComponent } from "../components/vca-title/vca-title.component";
 import { NgClass } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { AddButtonComponent } from "./add-button/add-button.component";
+import { AddButtonComponent } from "../components/add-button/add-button.component";
 import { ConfigOptionsComponent } from "./config-options/config-options.component";
 
 @Component({

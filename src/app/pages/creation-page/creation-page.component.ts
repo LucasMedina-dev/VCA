@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { VcaTitleComponent } from '../components/vca-title/vca-title.component';
 import { CreationFormComponent } from './creation-form/creation-form.component';
-import { AddButtonComponent } from "../domain-page/add-button/add-button.component";
+import { AddButtonComponent } from "../components/add-button/add-button.component";
 
 @Component({
     selector: 'app-creation-page',
