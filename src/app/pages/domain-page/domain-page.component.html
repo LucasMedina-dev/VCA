@@ -1,35 +1,14 @@
-<main class="w-full h-dvh flex flex-col items-center justify-center">
+<main class="relative w-full h-dvh flex flex-col items-center justify-center">
   <app-vca-title></app-vca-title>
-  <div class="w-full md:w-1/2 pt-4 flex flex-row justify-between content-end gap-x-4">
-    <div class="flex flex-row items-center gap-x-3 self-start">
-      <button routerLink="/pickup">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left border border-white rounded-full size-6 transition-all hover:bg-white hover:stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M5 12l14 0" />
-          <path d="M5 12l6 6" />
-          <path d="M5 12l6 -6" />
-        </svg>
-      </button>
-      <span class="font-thin text-sm text-white">My portfolio</span>
-    </div>
-    <div class="flex flex-row justify-end gap-x-3">
-      <div class="flex flex-row gap-x-3 transition-all ease-in-out h-7" [ngClass]="{'opacity-0 gap-x-8': !configOpened}">
-        <button class="size-7 transition-all rounded-full bg-opacity-20 text-white font-thin text-xs" [ngClass]="{'bg-[#49ff85]': domainData.keyStatus, 'bg-[#ff6565]': !domainData.keyStatus, 'size-2': !configOpened, '': !configOpened }">K</button>
-        <button class="size-7 transition-all rounded-full bg-opacity-20 text-white font-thin text-xs " [ngClass]="{'bg-[#49ff85]': domainData.counterStatus, 'bg-[#ff6565]': !domainData.counterStatus, 'size-2': !configOpened, '': !configOpened }">C</button>
-        <button class="size-7 transition-all rounded-full bg-opacity-65 text-white bg-[#d39b21] font-thin text-xs " [ngClass]="{'size-2': !configOpened}" >R</button>
-        <button class="size-7 transition-all rounded-full bg-opacity-65 text-white bg-[#d33030] font-thin text-xs " [ngClass]="{'size-2': !configOpened}" >D</button>
-      </div>
-      <button class="size-auto transition-all" [ngClass]="{'rotate-90  drop-shadow-white': configOpened}" (click)="settingsToggle()">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings size-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.3" stroke="#bbbbbb" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
-              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-          </svg>
-      </button>
-    </div>
-  </div>
   <span class="w-full h-px bg-slate-100 my-5"></span>
   <div class="flex flex-col w-full md:w-4/5 lg:3/5 xl:w-1/2">
+    <div class="flex flex-row justify-between">
+      <div class="flex flex-row items-center gap-x-3 self-start">
+        <app-add-button link="/pickup" title="Back"></app-add-button>
+        <span class="font-thin text-sm text-white">My portfolio</span>
+      </div>
+      <app-config-options [domainData]=domainData class="flex flex-row"></app-config-options>
+    </div>
     <div class="flex flex-row justify-between py-1">
       <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
         <span class="text-white font-thin text-xs">Total hits</span>

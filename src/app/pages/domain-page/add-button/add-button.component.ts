@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -9,5 +9,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './add-button.component.css'
 })
 export class AddButtonComponent {
-
+  @Input() link : any;
+  @Input() title : any;
 }
