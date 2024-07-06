@@ -15,6 +15,7 @@ export class LandingComponent {
   login() {
     this.auth.isAuthenticated$.subscribe({
       next: (data)=>{
+        console.log(data)
         if(data){
           this.router.navigate(['pickup'])
         }else{
