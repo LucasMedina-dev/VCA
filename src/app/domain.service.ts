@@ -14,14 +14,14 @@ export class DomainService {
 
   postDomain(domain: DomainStruct):Observable<any>{
     try {
-      return this.http.post<any>(`${this.endpoint}domain/create`,domain)
+      return this.http.post<any>(`${this.endpoint}domains/create`,domain)
     } catch (error) {
       throw error
     }
   }
   getDomains(userId: string):Observable<any>{
     try {
-      return this.http.get<any>(`${this.endpoint}domain/list`,{
+      return this.http.get<any>(`${this.endpoint}domains/list`,{
         params:{
           userId: userId
         },

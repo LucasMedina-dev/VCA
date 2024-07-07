@@ -58,14 +58,15 @@ export class CreationFormComponent implements OnInit {
         website: this.domainGroup.value.domainWebsite || '',
         keyStatus: this.domainGroup.value.keyStatus || false,
       };
-      // se hace click al boton ready, mientras se lanza la peticion y se espera la respuesta del servidor, this.loading pasa a ser true
-      this.loading = true;
+      this.loading = true;      
       this.domainService.postDomain(this.domainData).subscribe({
         next:(data)=>{
           console.log(data)
+          this.loading=false;
         },
         error: (error)=>{
           console.log(error)
+          this.loading=false;
         }
       })
       
