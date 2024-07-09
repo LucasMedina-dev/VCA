@@ -10,15 +10,16 @@ import { noWhitespaceValidator } from '../validators/no-whitespace.validator';
 import { AuthService } from '@auth0/auth0-angular';
 import DomainStruct from '../../structures/domainStruct';
 import { Router } from '@angular/router';
-import { DomainService } from '../../../domain.service';
-import { provideHttpClient } from '@angular/common/http';
+import { DomainService } from '../../../services/domain.service';
+import { AlertsService } from '../../../services/alerts.service'
+import { AlertComponent } from "../../components/alert/alert.component";
 
 @Component({
-  selector: 'app-creation-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, NgIf],
-  templateUrl: './creation-form.component.html',
-  styleUrl: './creation-form.component.css',
+    selector: 'app-creation-form',
+    standalone: true,
+    templateUrl: './creation-form.component.html',
+    styleUrl: './creation-form.component.css',
+    imports: [ReactiveFormsModule, NgClass, NgIf, AlertComponent]
 })
 export class CreationFormComponent implements OnInit {
   loading: boolean = false;
@@ -31,7 +32,7 @@ export class CreationFormComponent implements OnInit {
       Validators.compose([
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(30),
+        Validators.maxLength(60),
         Validators.pattern('[a-zA-Z ]*'),
         noWhitespaceValidator(),
       ])
@@ -39,7 +40,7 @@ export class CreationFormComponent implements OnInit {
     domainWebsite: new FormControl(''),
     keyStatus: new FormControl(true),
   });
-  constructor(private auth: AuthService, private router: Router, private domainService: DomainService) {}
+  constructor(private auth: AuthService, private router: Router, private domainService: DomainService, private alert : AlertsService) {}
   ngOnInit(): void {
     this.auth.user$.subscribe({
       next: (data) => {
@@ -55,17 +56,20 @@ export class CreationFormComponent implements OnInit {
       this.domainData = {
         userId: this.userId || '',
         domainName: this.domainGroup.value.domainName || '',
-        website: this.domainGroup.value.domainWebsite || '',
+        domainWebsite: this.domainGroup.value.domainWebsite || '',
         keyStatus: this.domainGroup.value.keyStatus || false,
       };
       this.loading = true;      
       this.domainService.postDomain(this.domainData).subscribe({
         next:(data)=>{
-          console.log(data)
+          this.alert.showAlert('Domain created.')
           this.loading=false;
         },
         error: (error)=>{
           console.log(error)
+          if(error.status===403){
+            this.alert.showAlert('Domain name already exists.')
+          }
           this.loading=false;
         }
       })

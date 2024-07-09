@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DomainService } from './domain.service';
+import { DomainService } from './services/domain.service';
 import { AuthService } from '@auth0/auth0-angular';
 @Component({
   selector: 'app-root',

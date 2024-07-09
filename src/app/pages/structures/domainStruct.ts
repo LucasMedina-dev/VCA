@@ -1,7 +1,7 @@
 interface DomainStruct {
   userId: string;
   domainName: string;
-  website: string;
+  domainWebsite: string;
   keyStatus: boolean;
 }
 export default DomainStruct
