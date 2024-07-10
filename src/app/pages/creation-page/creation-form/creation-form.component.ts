@@ -22,6 +22,7 @@ import { AlertComponent } from "../../components/alert/alert.component";
     imports: [ReactiveFormsModule, NgClass, NgIf, AlertComponent]
 })
 export class CreationFormComponent implements OnInit {
+  awaitChanges : boolean = false;
   loading: boolean = false;
   userData: any;
   userId: any;
@@ -62,13 +63,15 @@ export class CreationFormComponent implements OnInit {
       this.loading = true;      
       this.domainService.postDomain(this.domainData).subscribe({
         next:(data)=>{
-          this.alert.showAlert('Domain created.')
-          this.loading=false;
+          setTimeout(()=>{
+            this.loading=false;
+            this.router.navigate(["pickup"])
+          }, 3000)
         },
         error: (error)=>{
-          console.log(error)
           if(error.status===403){
             this.alert.showAlert('Domain name already exists.')
+            this.awaitChanges=true
           }
           this.loading=false;
         }
@@ -81,6 +84,9 @@ export class CreationFormComponent implements OnInit {
       this.domainGroup.get(field)?.valid ||
       this.domainGroup.get(field)?.value == '';
     return status;
+  }
+  enableSubmit() {
+    this.awaitChanges=false
   }
 
   // USER THINGS
