@@ -10,7 +10,7 @@ import DomainStruct from '../../structures/domainStruct';
   styleUrl: './domain-card.component.css',
 })
 export class DomainCardComponent{
-  @Input() domain!: DomainStruct;
+  @Input() domain!: any;
   constructor(private router: Router){}
   goToDomain() {
     const domainName : String = this.domain.domainName.toLowerCase().split(" ").join("-")
