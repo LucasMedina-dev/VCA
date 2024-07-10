@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import DomainStruct from '../../structures/domainStruct';
 
 @Component({
   selector: 'app-domain-card',
@@ -8,17 +9,11 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './domain-card.component.html',
   styleUrl: './domain-card.component.css',
 })
-export class DomainCardComponent {
-
+export class DomainCardComponent{
+  @Input() domain!: DomainStruct;
   constructor(private router: Router){}
-  cardData: any = { // Create model and modify cardData: DomainModel ...
-    idDomain: 1,
-    domainName: "My website"
-  } 
-  
   goToDomain() {
-    const domainName : String = this.cardData.domainName.toLowerCase().split(" ").join("-")
-
+    const domainName : String = this.domain.domainName.toLowerCase().split(" ").join("-")
     this.router.navigate([`/stats/${domainName}`])
   }
 }

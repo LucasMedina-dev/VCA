@@ -1,16 +1,17 @@
 import { AuthService } from '@auth0/auth0-angular';
 import DomainStruct from '../pages/structures/domainStruct';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DomainService {
-  user : Object={};
+  userId: any;
   endpoint : string = "http://localhost:3000/";
   constructor(private auth: AuthService, private http: HttpClient) { }
+
 
   postDomain(domain: DomainStruct):Observable<any>{
     try {
@@ -19,18 +20,31 @@ export class DomainService {
       throw error
     }
   }
-  getDomains(userId: string):Observable<any>{
-    try {
-      return this.http.get<any>(`${this.endpoint}domains/list`,{
-        params:{
-          userId: userId
-        },
-      })
-    } catch (error) {
-      throw error
-    }
+  getDomains():Observable<any>{
+      return this.auth.user$.pipe(
+        switchMap((data)=>{
+          if(data?.sub){
+            return this.http.get<any>(`${this.endpoint}domains/list`,{
+              params:{
+                userId: this.getUserId(data.sub)
+              },
+            })
+          }else{
+            return of({error: "Can't find user."})
+          }
+        }),
+        catchError((error)=>{
+          return of({error})
+        })
+      )
+      
+  }
+  getUserId(user : string){
+    const inputString = user
+    const parts = inputString.split('|');
+    return parts[1];
   }
   saveUserData(userData : Object){
-    this.user= userData;
+    this.userId= userData;
   }
 }

@@ -46,7 +46,7 @@ export class CreationFormComponent implements OnInit {
     this.auth.user$.subscribe({
       next: (data) => {
         this.userData = data;
-        this.userId = this.getUserId(this.userData.sub)
+        this.userId = this.domainService.getUserId(this.userData.sub)
       },
     });
   }
@@ -87,12 +87,5 @@ export class CreationFormComponent implements OnInit {
   }
   enableSubmit() {
     this.awaitChanges=false
-  }
-
-  // USER THINGS
-  getUserId(user : string){
-    const inputString = user
-    const parts = inputString.split('|'); // Dividir la cadena en dos partes usando el carácter '|'
-    return parts[1];
   }
 }

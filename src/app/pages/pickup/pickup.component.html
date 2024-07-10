@@ -4,11 +4,7 @@
     <div class="w-full md:w-1/2 lg:2/5 flex flex-row justify-start">
         <app-add-button title="New counter" link="/creation"></app-add-button>
     </div>
-    <div class="w-full md:w-1/2 lg:2/5 h-80 mt-5 flex flex-col justify-start items-stretch gap-y-3">
-        <app-domain-card></app-domain-card>
-        <span class="mx-auto w-3/4 h-[0.7px] bg-gray-400"></span>
-        <app-domain-card></app-domain-card>
-        <span class="mx-auto w-3/4 h-[0.7px] bg-gray-400"></span>
-        
+    <div class="w-full md:w-1/2 lg:2/5 h-1/2 mt-5 flex flex-col justify-start items-stretch gap-y-3 overflow-y-auto scroll-smooth">
+        <app-domain-card *ngFor="let domain of domainList" [domain]="domain"></app-domain-card> 
     </div>
 </main>
