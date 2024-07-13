@@ -14,8 +14,7 @@ import { DomainService } from '../../services/domain.service';
     imports: [VcaTitleComponent, DomainCardComponent, AddButtonComponent, CommonModule]
 })
 export class PickupComponent implements OnInit{
-    domainList!: Array<DomainStruct>;
-    userId!: string;
+    domainList!: Array<any>;
     constructor(private domainService : DomainService){}
     ngOnInit(): void {
         this.domainService.getDomains().subscribe({

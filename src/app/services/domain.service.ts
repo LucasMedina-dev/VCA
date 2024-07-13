@@ -34,6 +34,7 @@ export class DomainService {
           }
         }),
         catchError((error)=>{
+          console.log('acaaa')
           return of({error})
         })
       )
