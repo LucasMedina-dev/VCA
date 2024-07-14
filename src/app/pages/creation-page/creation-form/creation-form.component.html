@@ -5,7 +5,7 @@
     name="domainName"
     placeholder="Domain name"
     formControlName="domainName"
-    [ngClass]="{ 'bg-rose-950': !getField('domainName') }"
+    [ngClass]="{ 'bg-rose-950': !getField('domainName') || awaitChanges }"
     (input)="enableSubmit()"
     class="bg-[#242131] text-slate-200 placeholder-[#9F9F9F] drop-shadow-xl font-thin leading-none border-b border-b-black px-3 py-2 focus-visible:outline-none"
   />
@@ -43,13 +43,13 @@
   <button
     [disabled]="domainGroup.invalid || loading || awaitChanges"
     [ngClass]="{
-      'hover:border-gray-700 hover:!bg-opacity-100 !bg-opacity-30 drop-shadow-[0_0_1px_#374D9A] ': !domainGroup.invalid,
+      'hover:border-gray-700 hover:!bg-opacity-100 !bg-opacity-30 drop-shadow-[0_0_1px_#374D9A] ': (!domainGroup.invalid && !awaitChanges) && !(awaitChanges && !domainGroup.invalid),
       'bg-blue-300 !bg-opacity-100 text-black': loading,
-    }"
+    }"  
     class="relative px-20 py-2 mx-auto rounded-sm bg-[#374D9A] bg-opacity-10 border border-[#374D9A] text-white font-thin transition-all duration-1000"
     (click)="createDomain()"
   >
-    <span class="transition-all" >{{!loading ? "Ready" : 'Creating'}}</span>
+    <span class="transition-all" [ngClass]="{'!text-gray-300' : domainGroup.invalid || awaitChanges}" >{{!loading ? "Ready" : 'Creating'}}</span>
     <span [ngClass]="{'animate-bounce ease-out' : loading}" class="inline-block font-bold text-black">_</span>
     <span [ngClass]="{'animate-pulse duration-75 opacity-100' : loading}" class="opacity-0 absolute w-full h-full bg-none left-0 top-0 -z-10 shadow-[0_0_10px_white] shadow-white"></span>
   </button>

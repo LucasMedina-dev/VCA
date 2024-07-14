@@ -70,7 +70,7 @@ export class CreationFormComponent implements OnInit {
           }, 3000)
         },
         error: (error)=>{
-          if(error.status===403){
+          if(error.status===500){
             this.alert.showAlert('Domain name already exists.')
             this.awaitChanges=true
           }
