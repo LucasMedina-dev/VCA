@@ -64,6 +64,7 @@ export class CreationFormComponent implements OnInit {
       this.domainService.postDomain(this.domainData).subscribe({
         next:(data)=>{
           setTimeout(()=>{
+            this.alert.showAlert("Domain created sucessfully.")
             this.loading=false;
             this.router.navigate(["pickup"])
           }, 3000)

@@ -10,7 +10,6 @@ export class AlertsService {
   
   constructor() { }
   showAlert(message: string) {
-    console.log(message)
     this.alertSubject.next(message);
   }
 }

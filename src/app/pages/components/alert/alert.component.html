@@ -1,4 +1,4 @@
-<div class="absolute left-0 w-dvw flex row justify-around" *ngIf="message">
+<div class="absolute z-50 left-0 top-3 w-dvw flex row justify-around transition-all" [ngClass]="{'translate-y-2 opacity-100':show, '-translate-y-2 opacity-0':!show}">
     <div class="flex justify-center bg-slate-800 border border-indigo-100 ">
         <span class="text-white text-sm px-10 py-2">
             {{message}}

@@ -1,7 +1,7 @@
 <div class="flex flex-row bg-slate-400 bg-opacity-15">
   <div class="size-14 grid place-items-center">
-    <span class="text-center text-sm text-white font-extralight">{{domain.totalHits || 0}} 🎯</span>
-    <span class="text-center text-sm text-white font-extralight">{{domain.differentHits || 0}} 🧍</span>
+    <span class="text-center text-sm text-white font-extralight">{{domain.totalhits || 0}} 🎯</span>
+    <span class="text-center text-sm text-white font-extralight">{{domain.differentvisitors || 0}} 🧍</span>
   </div>
   <div class="flex flex-col grow border-black drop-shadow-sm bg-sky-950 bg-opacity-20">
     <button class="relative bg-sky-950 flex flex-row grow-[2] justify-center items-center transition-all hover:bg-blue-900" (click)="goToDomain()">
