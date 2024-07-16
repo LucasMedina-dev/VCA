@@ -1,33 +1,31 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlertsService } from '../../../services/alerts.service';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [NgIf, NgClass],
+  imports: [NgIf, NgClass, NgFor],
   templateUrl: './alert.component.html',
-  styleUrl: './alert.component.css'
+  styleUrl: './alert.component.css',
 })
 export class AlertComponent implements OnInit {
-  message: string = '';
-  show:boolean=false;
+  messages: Array<any> = [];
   private subscription!: Subscription;
 
   constructor(private alertService: AlertsService) {}
 
   ngOnInit() {
-    this.subscription = this.alertService.alert$.subscribe(message => {
-      this.message = message;
-      this.show= message!=''
-      setTimeout(() => {
-        this.show=false
-        setTimeout(() => {
-          this.message=""
-        }, 1000);
-      }, 3000);
+    this.subscription = this.alertService.alert$.subscribe((message) => {
       
+      if (message != '' && !this.messages.find((msg)=>msg===message)) {
+        this.messages.push(message);
+        setTimeout(() => {
+          let index=this.messages.indexOf(message)
+          this.messages.splice(index,1)
+        }, 3000);
+      }
     });
   }
 }

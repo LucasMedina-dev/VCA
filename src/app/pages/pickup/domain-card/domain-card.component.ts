@@ -21,6 +21,7 @@ export class DomainCardComponent {
     this.router.navigate([`/stats/${domainName}`]);
   }
   clipboard(stringToCopy: string, alert : string) {
+    console.log(this.domain)
     navigator.clipboard.writeText(stringToCopy)
     this.alertsService.showAlert(alert || "Copied!")
   }
