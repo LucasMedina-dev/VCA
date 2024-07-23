@@ -1,40 +1,45 @@
 <main class="relative w-full h-dvh flex flex-col items-center justify-start">
   <app-vca-title></app-vca-title>
   <span class="w-full h-px bg-slate-100 my-5"></span>
-  <div class="flex flex-col w-full md:w-4/5 lg:3/5 xl:w-1/2">
+  <div class="flex flex-col w-full md:w-4/5 lg:3/5 xl:w-1/2" >
     <div class="flex flex-row justify-between mb-3">
       <div class="flex flex-row items-center gap-x-3 self-start">
         <app-add-button link="/pickup" title="Back"></app-add-button>
-        <span class="font-thin text-sm text-white">My portfolio</span>
+        <span class="font-thin text-sm text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
       </div>
-      <app-config-options [domainData]=domainData class="flex flex-row"></app-config-options>
+      <app-config-options [domainData]='config' class="flex flex-row"></app-config-options>
     </div>
     <div class="flex flex-row justify-between py-1">
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
-        <span class="text-white font-thin text-xs">Total hits</span>
-        <span class="text-white font-semibold text-md">24</span>
+      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
+        <span class="text-white font-thin text-xs text-center px-2">Total hits</span>
+        <span class="text-white font-semibold text-md text-center">{{domainData ? domainData.domainstats.totalHits : 0}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
-        <span class="text-white font-thin text-xs">Total hits</span>
-        <span class="text-white font-semibold text-md">24</span>
+      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
+        <span class="text-white font-thin text-xs text-center px-2">Different visitors</span>
+        <span class="text-white font-semibold text-md text-center">{{domainData ? domainData.domainstats.differentVisitors : 0}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
-        <span class="text-white font-thin text-xs">Total hits</span>
-        <span class="text-white font-semibold text-md">24</span>
+      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm" >
+        <span class="text-white font-thin text-xs text-center px-2">Last week hits</span>
+        <span class="text-white font-semibold text-md text-center">{{lastWeekVisitors || 0}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
-        <span class="text-white font-thin text-xs">Total hits</span>
-        <span class="text-white font-semibold text-md">24</span>
+      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
+        <span class="text-white font-thin text-xs text-center px-2">Last hit</span>
+        <span class="text-white font-semibold text-xs text-center">{{lastHit || 'Loading.'}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
-        <span class="text-white font-thin text-xs">Total hits</span>
-        <span class="text-white font-semibold text-md">24</span>
+      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
+        <span class="text-white font-thin text-xs text-center px-2">Majority visitors</span>
+        <span class="text-white font-semibold text-xs text-center">{{majority || 'Loading.'}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center">
-        <span class="text-white font-thin text-xs">Total hits</span>
-        <span class="text-white font-semibold text-md">24</span>
+      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
+        <span class="text-white font-thin text-xs text-center px-2">Best fan</span>
+        <span class="text-white font-semibold text-xs text-center">{{fan || 'Loading.'}}</span>
       </div>
     </div>
-    <div class="bg-black w-full h-72"></div>
+    <div class="w-full h-72">
+      <app-chart-view [hitData]="domainData"></app-chart-view>
+    </div>
+    <div class="w-full h-72">
+      <app-ip-list [visitors]="domainData.domainvisitors" *ngIf="domainData"></app-ip-list>
+    </div>
   </div>
 </main>

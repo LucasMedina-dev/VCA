@@ -1,0 +1,19 @@
+<!-- <div class="w-full h-20">
+  <div *ngFor="let date of getDates()">
+    <p (click)="toggle(date)" style="cursor: pointer">{{ date }}</p>
+    <div *ngIf="isExpanded(date)">
+      <p *ngFor="let visit of groupedVisitors[date]">{{ visit.visitorIp }}</p>
+    </div>
+  </div>
+</div> -->
+<div class="flex flex-row justify-stretch">
+    <table class="w-min h-72 bg-neutral-950 text-white text-xs font-thin text-center mt-2 rounded-sm">
+        <td class="px-10 border-r-[1px] border-white h-72">Dates</td>
+    </table>
+    <table class="flex flex-row justify-evenly grow h-72 bg-neutral-950 text-white text-xs font-thin text-center mt-2 rounded-sm">
+        <td>Ip</td>
+        <td>Ubication</td>
+        <td>Latitude</td>
+        <td>Longitude</td>
+    </table>
+</div>

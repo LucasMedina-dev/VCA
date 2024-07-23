@@ -30,20 +30,44 @@ export class DomainService {
               },
             })
           }else{
-            return of({error: "Can't find user."})
+            return of({error: "Cannot find user."})
           }
         }),
         catchError((error)=>{
-          console.log('acaaa')
           return of({error})
         })
       )
-      
   }
+  getDomain(domainName : string):Observable<any>{
+    domainName= this.getDomainName(domainName)
+    return this.auth.user$.pipe(
+      switchMap((data)=>{
+        if(data?.sub){
+          return this.http.get<any>(`${this.endpoint}domains/domain`,{
+            params:{
+              userId: this.getUserId(data.sub),
+              domainName: domainName
+            },
+          })
+        }else{
+          return of({error: "Cannot find user."})
+        }
+      }),
+      catchError((error)=>{
+        return of({error})
+      })
+    )
+  }
+
   getUserId(user : string){
     const inputString = user
     const parts = inputString.split('|');
     return parts[1];
+  }
+  getDomainName(pathname : string){
+    const inputString = pathname
+    const parts = inputString.split('/');
+    return parts[2];
   }
   saveUserData(userData : Object){
     this.userId= userData;
