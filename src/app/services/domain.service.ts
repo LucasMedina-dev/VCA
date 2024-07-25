@@ -58,6 +58,79 @@ export class DomainService {
       })
     )
   }
+  switchKeyStatus(keyId: any){
+    return this.auth.user$.pipe(
+      switchMap((data)=>{
+        if(data?.sub){
+          return this.http.put<any>(`${this.endpoint}domains/key`,{
+            params:{
+              keyId: keyId
+            },
+          })
+        }else{
+          return of({error: "Cannot find user."})
+        }
+      }),
+      catchError((error)=>{
+        return of({error})
+      })
+    )
+  }
+  switchDomainStatus(domainId: any){
+    return this.auth.user$.pipe(
+      switchMap((data)=>{
+        if(data?.sub){
+          return this.http.put<any>(`${this.endpoint}domains/domain`,{
+            params:{
+              domainId: domainId
+            },
+          })
+        }else{
+          return of({error: "Cannot find user."})
+        }
+      }),
+      catchError((error)=>{
+        return of({error})
+      })
+    )
+  }
+  resetDomainStats(domainId: any, statId : any){
+    return this.auth.user$.pipe(
+      switchMap((data)=>{
+        if(data?.sub){
+          return this.http.put<any>(`${this.endpoint}domains/reset`,{
+            params:{
+              domainId: domainId,
+              statId: statId
+            },
+          })
+        }else{
+          return of({error: "Cannot find user."})
+        }
+      }),
+      catchError((error)=>{
+        return of({error})
+      })
+    )
+  }
+  deleteDomain(domainId: any){
+    return this.auth.user$.pipe(
+      switchMap((data)=>{
+        if(data?.sub){
+          return this.http.delete<any>(`${this.endpoint}domains/domain`,{
+            params:{
+              domainId: domainId
+            },
+          })
+        }else{
+          return of({error: "Cannot find user."})
+        }
+      }),
+      catchError((error)=>{
+        return of({error})
+      })
+    )
+  }
 
   getUserId(user : string){
     const inputString = user

@@ -43,7 +43,7 @@ export class DomainPageComponent implements OnInit {
     this.domainService.getDomain(location.pathname).subscribe({
       next: (data) => {
         this.domainData = data.domainData;
-        this.config = [data.domainData.domain, data.domainData.domainkey];
+        this.config = [data.domainData.domain, data.domainData.domainkey, data.domainData.domainstats.statId];
         console.log(this.domainData);
         this.getLastWeekVisitors();
         this.getLastHit();

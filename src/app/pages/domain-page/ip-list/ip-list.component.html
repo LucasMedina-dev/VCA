@@ -1,19 +1,38 @@
-<!-- <div class="w-full h-20">
-  <div *ngFor="let date of getDates()">
-    <p (click)="toggle(date)" style="cursor: pointer">{{ date }}</p>
-    <div *ngIf="isExpanded(date)">
-      <p *ngFor="let visit of groupedVisitors[date]">{{ visit.visitorIp }}</p>
-    </div>
-  </div>
-</div> -->
-<div class="flex flex-row justify-stretch">
-    <table class="w-min h-72 bg-neutral-950 text-white text-xs font-thin text-center mt-2 rounded-sm">
-        <td class="px-10 border-r-[1px] border-white h-72">Dates</td>
-    </table>
-    <table class="flex flex-row justify-evenly grow h-72 bg-neutral-950 text-white text-xs font-thin text-center mt-2 rounded-sm">
-        <td>Ip</td>
-        <td>Ubication</td>
-        <td>Latitude</td>
-        <td>Longitude</td>
-    </table>
+<div class="relative flex flex-row justify-stretch h-64 overflow-y-auto mt-2">
+  <table
+    class="sticky top-0 w-min h-full bg-neutral-950 text-white text-xs font-thin text-center rounded-sm mr-2"
+  >
+    <thead><tr>Dates</tr></thead>
+    <tbody>
+      <td class="px-10 border-r-[1px] border-white h-48">
+        <tr class="cursor-pointer" (click)="unfilterDates()">All</tr>
+        <tr *ngFor="let date of getDates()">
+          <p (click)="getListByDate(date)" style="cursor: pointer">{{ date }}</p>
+        </tr>
+      </td>
+    </tbody>
+  </table>
+  <table
+    class="relative  grow bg-neutral-950 text-white text-xs font-thin text-center rounded-sm border-r border-neutral-950 overflow-y-auto"
+  >
+    <thead class="sticky top-0 bg-neutral-950">
+      <tr>
+        <th>Ip</th>
+        <th>Ubication</th>
+        <th>Coords</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody class="h-32">
+      <tr
+        *ngFor="let visit of filteredDates"
+        class="border-b border-gray-600 py-1 z-10"
+      >
+        <td>{{ visit.visitorIp }}</td>
+        <td>{{ visit.visitorUbication }}</td>
+        <td>{{ visit.visitorLat }} {{ visit.visitorLon }}</td>
+        <td>{{ visit.visitorDate }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,8 +1,8 @@
 <div class="flex flex-row gap-x-3 transition-all ease-in-out h-7 opacity-0" [ngClass]="{'opacity-0 gap-x-8': !configOpened}" *ngIf="show">
-    <button class="size-7 transition-all rounded-full bg-opacity-50 text-white font-thin text-xs" [ngClass]="{'bg-[#49ff85]': domainData.keyStatus, 'bg-[#ff6565]': !domainData.keyStatus, 'size-2': !configOpened}">K</button>
-    <button class="size-7 transition-all rounded-full bg-opacity-50 text-white font-thin text-xs " [ngClass]="{'bg-[#49ff85]': domainData.counterStatus, 'bg-[#ff6565]': !domainData.counterStatus, 'size-2': !configOpened}">C</button>
-    <button class="size-7 transition-all rounded-full bg-opacity-65 text-white bg-[#d39b21] font-thin text-xs " [ngClass]="{'size-2': !configOpened}" >R</button>
-    <button class="size-7 transition-all rounded-full bg-opacity-65 text-white bg-[#d33030] font-thin text-xs " [ngClass]="{'size-2': !configOpened}" >D</button>
+    <button class="size-7 transition-all rounded-full bg-opacity-50 text-white font-thin text-xs" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus, 'size-2': !configOpened}" (click)="switchKeyStatus()">K</button>
+    <button class="size-7 transition-all rounded-full bg-opacity-50 text-white font-thin text-xs " [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus, 'size-2': !configOpened}" (click)="switchDomainStatus()">C</button>
+    <button class="size-7 transition-all rounded-full bg-opacity-65 text-white bg-[#d39b21] font-thin text-xs " [ngClass]="{'size-2': !configOpened}" (click)="resetDomainStats()">R</button>
+    <button class="size-7 transition-all rounded-full bg-opacity-65 text-white bg-[#d33030] font-thin text-xs " [ngClass]="{'size-2': !configOpened}" (click)="deleteDomain()">D</button>
 </div>
 <button class="size-auto transition-all" [ngClass]="{'rotate-90  drop-shadow-white': configOpened}" (click)="settingsToggle()">
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings size-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.3" stroke="#bbbbbb" fill="none" stroke-linecap="round" stroke-linejoin="round">

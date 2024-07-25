@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
 export class IpListComponent {
   @Input() visitors!: Array<any>
   groupedVisitors: { [date: string]: any[] } = {};
-  expandedDates: { [date: string]: boolean } = {};
+  filteredDates!: Array<any>;
 
   ngOnInit() {
     this.groupVisitorsByDate();
@@ -24,18 +24,19 @@ export class IpListComponent {
         this.groupedVisitors[date] = [];
       }
       this.groupedVisitors[date].push(visit);
+      visit.visitorDate=date
     });
+    this.filteredDates= this.visitors
   }
 
   getDates() {
     return Object.keys(this.groupedVisitors);
   }
 
-  toggle(date: string) {
-    this.expandedDates[date] = !this.expandedDates[date];
+  getListByDate(date: string) {
+    this.filteredDates= this.visitors.filter((visitor:any)=> date === visitor.visitorDate)
   }
-
-  isExpanded(date: string) {
-    return this.expandedDates[date];
+  unfilterDates(){
+    this.filteredDates=this.visitors;
   }
 }
