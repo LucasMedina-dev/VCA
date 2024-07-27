@@ -12,3 +12,27 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Personaliza la barra de desplazamiento para navegadores WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1D2034; /* Color del track de la barra de desplazamiento */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color de la barra de desplazamiento */
+    border-radius: 10px; /* Radio de borde para hacerla redondeada */
+    border: 3px solid #1D2034; /* Espacio entre la barra de desplazamiento y el track */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color de la barra de desplazamiento cuando se pasa el ratón por encima */
+  }
+  
+  /* Firefox */
+  * {
+    scrollbar-width: thin; /* Ancho de la barra de desplazamiento */
+    scrollbar-color: #888 #1D2034; /* Color de la barra de desplazamiento y del track */
+  }
