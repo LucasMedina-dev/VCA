@@ -1,41 +1,75 @@
+<app-vca-title></app-vca-title>
 <main class="relative w-full h-dvh flex flex-col items-center justify-start">
-  <app-vca-title></app-vca-title>
-  <span class="w-full h-px bg-slate-100 my-5"></span>
-  <div class="flex flex-col w-full px-2 xl:w-3/4 2xl:w-1/2" >
-    <div class="flex flex-row justify-between mb-3">
-      <div class="flex flex-row items-center gap-x-3 self-start">
+  <span class="w-full h-px bg-slate-100 mb-5"></span>
+  <div class="flex flex-col w-full px-2 xl:w-3/4 overflow-auto mb-44" >
+    <div class="flex flex-row flex-wrap justify-between mb-2">
+      <div class="flex flex-row items-center gap-x-3 self-end">
         <app-add-button link="/pickup" title="Back"></app-add-button>
-        <span class="font-thin text-sm text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
+        <span class="pl-7 font-thin text-md text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
       </div>
       <app-config-options [domainData]='config' class="flex flex-row"></app-config-options>
     </div>
-    <div class="flex flex-row justify-between py-1">
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
-        <span class="text-white font-thin text-xs text-center px-2">Total hits</span>
-        <span class="text-white font-semibold text-md text-center">{{domainData ? domainData.domainstats.totalHits : 0}}</span>
+    <div class="flex flex-wrap flex-row justify-center py-2 gap-y-2">
+      <div class="flex grow items-center justify-between w-full max-w-sm bg-[#2C2F48] p-2 rounded-sm">
+        <span class="text-white font-thin text-xs flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m0 6V9m3 6H9"></path>
+          </svg>
+          Total Hits
+        </span>
+        <span class="text-white font-semibold text-sm">{{domainData ? domainData.domainstats.totalHits : 0}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
-        <span class="text-white font-thin text-xs text-center px-2">Different visitors</span>
-        <span class="text-white font-semibold text-md text-center">{{domainData ? domainData.domainstats.differentVisitors : 0}}</span>
+      <div class="flex grow items-center justify-between w-full max-w-sm bg-[#1F223B] p-2 rounded-sm">
+        <span class="text-white font-thin text-xs flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.586 4.586a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414L9 10M5 10l4.586-4.586a1 1 0 011.414 0l5 5a1 1 0 010 1.414L15 10M21 21h-6M9 3h6M3 21h6"></path>
+          </svg>
+          Different Visitors
+        </span>
+        <span class="text-white font-semibold text-sm">{{domainData ? domainData.domainstats.differentVisitors : 0}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm" >
-        <span class="text-white font-thin text-xs text-center px-2">Last week hits</span>
-        <span class="text-white font-semibold text-md text-center">{{lastWeekVisitors || 0}}</span>
+      <div class="flex grow items-center justify-between w-full max-w-sm bg-[#2C2F48] p-2 rounded-sm">
+        <span class="text-white font-thin text-xs flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2H3V4zM3 8h18v12a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm3 4h12"></path>
+          </svg>
+          Last Week Hits
+        </span>
+        <span class="text-white font-semibold text-sm">{{lastWeekVisitors || 0}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
-        <span class="text-white font-thin text-xs text-center px-2">Last hit</span>
-        <span class="text-white font-semibold text-xs text-center">{{lastHit || 'Loading.'}}</span>
+      <div class="flex grow items-center justify-between w-full max-w-sm bg-[#1F223B] p-2 rounded-sm">
+        <span class="text-white font-thin text-xs flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"></path>
+          </svg>
+          Last Hit
+        </span>
+        <span class="text-white font-semibold text-sm">{{lastHit || 'Loading.'}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
-        <span class="text-white font-thin text-xs text-center px-2">Majority visitors</span>
-        <span class="text-white font-semibold text-xs text-center">{{majority || 'Loading.'}}</span>
+      <div class="flex grow items-center justify-between w-full max-w-sm bg-[#2C2F48] p-2 rounded-sm">
+        <span class="text-white font-thin text-xs flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5 5L21 5"></path>
+          </svg>
+          Majority Visitors
+        </span>
+        <span class="text-white font-semibold text-sm">{{majority || 'Loading.'}}</span>
       </div>
-      <div class="size-24 bg-[#1D2034] flex flex-col justify-around items-center drop-shadow-xl rounded-sm">
-        <span class="text-white font-thin text-xs text-center px-2">Best fan</span>
-        <span class="text-white font-semibold text-xs text-center">{{fan || 'Loading.'}}</span>
+      <div class="flex grow items-center justify-between w-full max-w-sm bg-[#1F223B] p-2 rounded-sm">
+        <span class="text-white font-thin text-xs flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          Best Fan
+        </span>
+        <span class="text-white font-semibold text-sm">{{fan || 'Loading.'}}</span>
       </div>
     </div>
-    <div class="w-full h-72">
+    <div class="w-full flex flex-row flex-wrap justify-center mb-2 gap-2">
+      <div *ngIf="domainData" class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard('http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId, 'Domain endpoint copied!')">{{'http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId || 'Loading.'}}</div>
+      <div *ngIf="domainData" class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard(domainData.domainkey.keyCode, 'Key copied!')">{{domainData.domainkey.keyCode || 'Loading.'}}</div>
+    </div>
+    <div class="w-full h-72 bg-slate-300 rounded-sm">
       <app-chart-view [hitData]="domainData"></app-chart-view>
     </div>
     <div class="w-full h-72">

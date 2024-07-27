@@ -11,24 +11,11 @@ import { Router } from '@angular/router';
   templateUrl: './config-options.component.html',
   styleUrl: './config-options.component.css'
 })
-export class ConfigOptionsComponent implements OnChanges{
-  configOpened: boolean= false;
-  show : boolean= false;
+export class ConfigOptionsComponent{
   @Input() domainData: any;
   
   constructor(private domainService : DomainService, private alert : AlertsService, private router: Router){}
 
-  settingsToggle(){
-      this.configOpened=!this.configOpened
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['domainData'] && changes['domainData'].currentValue) {
-      this.show = true;
-    } else {
-      this.show = false;
-    }
-    console.log(this.domainData)
-  }
   switchKeyStatus(){
     this.domainService.switchKeyStatus(this.domainData[1].keyId).subscribe({
       next:(data)=>{

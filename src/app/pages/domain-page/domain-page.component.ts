@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VcaTitleComponent } from '../components/vca-title/vca-title.component';
 import { NgClass, NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { AddButtonComponent } from '../components/add-button/add-button.component';
 import { ConfigOptionsComponent } from './config-options/config-options.component';
@@ -9,6 +9,7 @@ import { DomainService } from '../../services/domain.service';
 import { ChartViewComponent } from './chart-view/chart-view.component';
 import { last, Observable, of } from 'rxjs';
 import { IpListComponent } from "./ip-list/ip-list.component";
+import { AlertsService } from '../../services/alerts.service';
 
 @Component({
   selector: 'app-domain-page',
@@ -24,32 +25,33 @@ import { IpListComponent } from "./ip-list/ip-list.component";
     AddButtonComponent,
     ConfigOptionsComponent,
     ChartViewComponent,
-    IpListComponent
+    IpListComponent,
+    NgIf
 ],
 })
 export class DomainPageComponent implements OnInit {
   lastWeekVisitors: any;
   lastHit: any;
-  configOpened: boolean = false;
   domainData: any;
   config: any;
   majority!: string;
   fan!: string;
-  constructor(private domainService: DomainService) {}
-  settingsToggle() {
-    this.configOpened = !this.configOpened;
-  }
+  constructor(private domainService: DomainService, private router : Router, private alertsService: AlertsService) {}
   ngOnInit(): void {
     this.domainService.getDomain(location.pathname).subscribe({
       next: (data) => {
+        (data) ?? this.router.navigate(['pickup']);
         this.domainData = data.domainData;
         this.config = [data.domainData.domain, data.domainData.domainkey, data.domainData.domainstats.statId];
-        console.log(this.domainData);
         this.getLastWeekVisitors();
         this.getLastHit();
         this.getMajorityCountry();
         this.getFan();
+        console.log(data)
       },
+      error:()=>{
+        this.router.navigate(['pickup']);
+      }
     });
   }
   getLastWeekVisitors() {
@@ -127,5 +129,9 @@ export class DomainPageComponent implements OnInit {
     } else {
       this.fan = 'No hits.';
     }
+  }
+  clipboard(stringToCopy: string, alert : string) {
+    navigator.clipboard.writeText(stringToCopy)
+    this.alertsService.showAlert(alert || "Copied!")
   }
 }

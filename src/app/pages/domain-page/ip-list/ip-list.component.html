@@ -16,7 +16,7 @@
     class="relative  grow bg-neutral-950 text-white text-xs font-thin text-center rounded-sm border-r border-neutral-950 overflow-y-auto"
   >
     <thead class="sticky top-0 bg-neutral-950">
-      <tr>
+      <tr *ngIf="visitors[0].visitorId!=null">
         <th>Ip</th>
         <th>Ubication</th>
         <th>Coords</th>
@@ -32,6 +32,9 @@
         <td>{{ visit.visitorUbication }}</td>
         <td>{{ visit.visitorLat }} {{ visit.visitorLon }}</td>
         <td>{{ visit.visitorDate }}</td>
+      </tr>
+      <tr *ngIf="visitors[0].visitorId===null">
+        No hits registered
       </tr>
     </tbody>
   </table>
