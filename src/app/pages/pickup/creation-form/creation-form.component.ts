@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,7 +9,6 @@ import {
 import { noWhitespaceValidator } from '../validators/no-whitespace.validator';
 import { AuthService } from '@auth0/auth0-angular';
 import DomainStruct from '../../structures/domainStruct';
-import { Router } from '@angular/router';
 import { DomainService } from '../../../services/domain.service';
 import { AlertsService } from '../../../services/alerts.service'
 import { AlertComponent } from "../../components/alert/alert.component";
@@ -22,6 +21,7 @@ import { AlertComponent } from "../../components/alert/alert.component";
     imports: [ReactiveFormsModule, NgClass, NgIf, AlertComponent]
 })
 export class CreationFormComponent implements OnInit {
+  @Output() closeWindow = new EventEmitter<boolean>();
   awaitChanges : boolean = false;
   loading: boolean = false;
   userData: any;
@@ -41,7 +41,7 @@ export class CreationFormComponent implements OnInit {
     domainWebsite: new FormControl(''),
     keyStatus: new FormControl(true),
   });
-  constructor(private auth: AuthService, private router: Router, private domainService: DomainService, private alert : AlertsService) {}
+  constructor(private auth: AuthService, private domainService: DomainService, private alert : AlertsService) {}
   ngOnInit(): void {
     this.auth.user$.subscribe({
       next: (data) => {
@@ -66,7 +66,7 @@ export class CreationFormComponent implements OnInit {
           setTimeout(()=>{
             this.alert.showAlert("Domain created sucessfully.")
             this.loading=false;
-            this.router.navigate(["pickup"])
+            window.location.reload()
           }, 3000)
         },
         error: (error)=>{
@@ -88,5 +88,8 @@ export class CreationFormComponent implements OnInit {
   }
   enableSubmit() {
     this.awaitChanges=false
+  }
+  toggleSwitch(){
+    this.closeWindow.emit(false);
   }
 }

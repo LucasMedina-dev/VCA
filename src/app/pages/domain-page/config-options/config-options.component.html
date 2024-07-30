@@ -1,4 +1,4 @@
-<div class="flex flex-row gap-x-3 transition-all ease-in-out mt-4" *ngIf="domainData">
+<div class="flex flex-row gap-x-3 transition-all ease-in-out" *ngIf="domainData">
     <button class="py-2 px-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:bg-yellow-200" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">{{domainData[0].domainStatus ? 'Counter activated.' : 'Counter deactivated.'}}</button>
     <button class="py-2 px-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:bg-yellow-200" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus}" (click)="switchKeyStatus()">{{domainData[1].keyStatus ? 'Key activated.' : 'Key deactivated.'}}</button>
     <button class="py-2 px-2 transition-all rounded-sm border-b-2 border-b-black text-black bg-sky-300 hover:bg-sky-100 font-extralight text-xs " (click)="resetDomainStats()">Reset stats.</button>
