@@ -3,7 +3,6 @@ import { VcaTitleComponent } from '../components/vca-title/vca-title.component';
 import { AddButtonComponent } from '../components/add-button/add-button.component';
 import { DomainCardComponent } from './domain-card/domain-card.component';
 import { CommonModule } from '@angular/common';
-import DomainStruct from '../structures/domainStruct';
 import { DomainService } from '../../services/domain.service';
 import { CreationFormComponent } from "./creation-form/creation-form.component";
 

@@ -1,14 +1,14 @@
 <app-vca-title></app-vca-title>
 <main class="relative h-5/6 w-full flex flex-col justify-start items-center pb-5">
     <div class="flex flex-col justify-start w-full h-full px-2 xl:w-3/4 gap-y-4 py-4">
-        <app-add-button title="New counter" (click)="newCounter()"></app-add-button>
+        <app-add-button class="w-max" title="New counter" (click)="newCounter()"></app-add-button>
         <div class="w-full flex flex-col justify-start items-stretch gap-y-3 overflow-y-auto scroll-smooth">
             <app-domain-card *ngFor="let domain of domainList" [domain]="domain"></app-domain-card> 
         </div>
     </div>
 </main>
 <ng-template #createCounter [ngIf]="createOpened">
-    <div class="absolute top-0 w-full h-full grid place-items-center">
+    <div class="absolute top-0 w-full h-full grid place-items-center opacity-0 creationAnimation">
         <div class="absolute z-40 w-dvw h-dvh bg-gray-500 bg-opacity-50" (click)="createOpened=false"></div>
         <div class="absolute z-50 grid place-items-center">
             <div class="size-96 grid place-items-center bg-slate-800 rounded-sm border border-zinc-500 drop-shadow-md">
