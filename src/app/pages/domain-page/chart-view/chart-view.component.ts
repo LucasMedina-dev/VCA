@@ -1,7 +1,14 @@
 import { NgIf } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ChartModule } from 'angular-highcharts';
 import { Chart } from 'angular-highcharts';
+import Highcharts from 'highcharts';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -9,96 +16,90 @@ import { BehaviorSubject } from 'rxjs';
   standalone: true,
   templateUrl: './chart-view.component.html',
   styleUrls: ['./chart-view.component.css'],
-  imports: [ChartModule, NgIf]
+  imports: [ChartModule, NgIf],
 })
-export class ChartViewComponent implements OnChanges{
-  chart: Chart= new Chart({
-    chart:{type:'line'}
+export class ChartViewComponent implements OnChanges {
+  chart: Chart = new Chart({
+    chart: { type: 'line' },
   });
-  today: Date= new Date();
+  today: Date = new Date();
   @Input() hitData: any;
   dataSubject!: BehaviorSubject<string>;
-  show: boolean=false;
-  constructor() {
-
-  }
+  show: boolean = false;
+  constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['hitData'] && changes['hitData'].currentValue) {
       this.show = true;
-      this.loadChart(this.getHitsPerDay(this.hitData.domainvisitors))
+      console.log(this.hitData.domainvisitors)
+      this.loadChart(this.getHitsPerDay(this.hitData.domainvisitors));
     } else {
       this.show = false;
     }
   }
-  loadChart(insertData : Array<any>){
+  loadChart(insertData: any) {
+
+
     this.chart = new Chart({
-      accessibility:{
-        enabled:false
+      accessibility: {
+        enabled: false,
       },
       chart: {
         type: 'line',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       },
-      legend:{
-        valueSuffix:''
+      legend: {
+        valueSuffix: '',
       },
       title: {
-        text: ''
+        text: '',
       },
       credits: {
-        text:''
+        text: '',
       },
-      yAxis:{
+      yAxis: {
         title: {
-          text:''
+          text: '',
         },
         tickInterval: 1,
       },
-      xAxis:{
+      xAxis: {
         title: {
-          text:''
+          text: '',
         },
-        lineColor:'black',
-        minorGridLineColor:'black',
-        type: 'linear',
-        tickInterval: 1,
-        units: [[
-            'day',
-            [1, 2]
-        ]]
+        lineColor: 'black',
+        minorGridLineColor: 'black'
       },
-      series: [{
-        type:'line',
-        name: 'Hits',
-        data: insertData
-      }]
+      series: [
+        {
+          type: 'line',
+          name: 'Hits',
+          data: insertData,
+        },
+      ],
     });
   }
+  
   getHitsPerDay(visitors: Array<any>) {
     const today = new Date();
-    const hitsPerDay: Record<number, number> = {};
-  
-    // Inicializar el acumulador con los últimos 7 días incluyendo hoy
+    const hitsPerDay: Record<string, number> = {};
+
     for (let i = 0; i < 7; i++) {
       const date = new Date();
       date.setDate(today.getDate() - i);
-      const day = date.getDate();
+      const day = date.toLocaleDateString('es-ES', { year: 'numeric',month: 'numeric', day:'numeric' });
       hitsPerDay[day] = 0;
     }
-  
-    visitors.forEach(visitor => {
+
+    visitors.forEach((visitor) => {
       const date = new Date(visitor.visitorDate);
-      const day = date.getDate();
-      if (day in hitsPerDay) {
+      const day = date.toLocaleDateString('es-ES', { year: 'numeric',month: 'numeric', day:'numeric' });
+      if (day in hitsPerDay && visitor.visitorId!=null) {
         hitsPerDay[day] += 1;
       }
     });
-  
+
     return Object.keys(hitsPerDay)
-      .sort((a, b) => parseInt(a) - parseInt(b))
-      .map(day => [parseInt(day), hitsPerDay[parseInt(day)]]);
+      .map((day) => [day, hitsPerDay[day]]).reverse();
   }
-  
-  
-  
+
 }

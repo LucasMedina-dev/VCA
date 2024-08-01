@@ -1,5 +1,5 @@
 <app-vca-title></app-vca-title>
-<main class="relative w-full h-dvh flex flex-col items-center justify-start">
+<main class="relative w-full h-5/6 flex flex-col items-center justify-start">
   <div class="flex flex-col w-full px-2 xl:w-3/4 overflow-auto py-4">
     <div class="flex flex-row flex-wrap justify-between items-start mb-2">
       <div class="flex flex-row items-center gap-x-3">
@@ -64,14 +64,18 @@
         <span class="text-white font-semibold text-sm">{{fan || 'Loading.'}}</span>
       </div>
     </div>
-    <div class="w-full flex flex-row flex-wrap justify-center mb-2 gap-2">
-      <div *ngIf="domainData" class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard('http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId, 'Domain endpoint copied!')">{{'http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId || 'Loading.'}}</div>
-      <div *ngIf="domainData" class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard(domainData.domainkey.keyCode, 'Key copied!')">{{domainData.domainkey.keyCode || 'Loading.'}}</div>
+    <div class="w-full flex flex-row flex-wrap justify-center mb-2 gap-2" [ngClass]="{'animate-pulse':!domainData}">
+      <div class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard('http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId, 'Domain endpoint copied!')">
+        <p *ngIf="domainData">{{'http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId || 'Loading.'}}</p>
+      </div>
+      <div class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard(domainData.domainkey.keyCode, 'Key copied!')">
+        <p *ngIf="domainData">{{domainData.domainkey.keyCode || 'Loading.'}}</p>
+      </div>
     </div>
-    <div class="w-full h-72 bg-slate-300 rounded-sm">
+    <div class="w-full h-72 bg-slate-300 rounded-sm" [ngClass]="{'animate-pulse':!domainData}">
       <app-chart-view [hitData]="domainData"></app-chart-view>
     </div>
-    <div class="w-full h-72">
+    <div class="w-full h-72" [ngClass]="{'bg-black animate-pulse':!domainData}">
       <app-ip-list [visitors]="domainData.domainvisitors" *ngIf="domainData"></app-ip-list>
     </div>
   </div>

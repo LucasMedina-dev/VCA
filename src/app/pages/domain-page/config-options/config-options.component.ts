@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DomainService } from '../../../services/domain.service';
 import { AlertsService } from '../../../services/alerts.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class ConfigOptionsComponent{
   @Input() domainData: any;
-  
   constructor(private domainService : DomainService, private alert : AlertsService, private router: Router){}
 
   switchKeyStatus(){

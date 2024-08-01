@@ -36,18 +36,22 @@ export class DomainPageComponent implements OnInit {
   config: any;
   majority!: string;
   fan!: string;
+  resetOpened: boolean=false;
+  deleteOpened: boolean=false;
   constructor(private domainService: DomainService, private router : Router, private alertsService: AlertsService) {}
   ngOnInit(): void {
     this.domainService.getDomain(location.pathname).subscribe({
       next: (data) => {
-        (data) ?? this.router.navigate(['pickup']);
-        this.domainData = data.domainData;
-        this.config = [data.domainData.domain, data.domainData.domainkey, data.domainData.domainstats.statId];
-        this.getLastWeekVisitors();
-        this.getLastHit();
-        this.getMajorityCountry();
-        this.getFan();
-        console.log(data)
+        if(data!=null){
+          this.domainData = data.domainData;
+          this.config = [data.domainData.domain, data.domainData.domainkey, data.domainData.domainstats.statId];
+          this.getLastWeekVisitors();
+          this.getLastHit();
+          this.getMajorityCountry();
+          this.getFan();
+        }else{
+          this.router.navigate(['pickup']);
+        }       
       },
       error:()=>{
         this.router.navigate(['pickup']);
