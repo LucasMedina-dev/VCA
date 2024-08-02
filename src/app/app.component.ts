@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { DomainService } from './services/domain.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { AlertComponent } from "./pages/components/alert/alert.component";
+import { AskComponent } from "./pages/components/ask/ask.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AlertComponent],
+  imports: [RouterOutlet, AlertComponent, AskComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

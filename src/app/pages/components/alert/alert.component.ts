@@ -12,12 +12,11 @@ import { Subscription } from 'rxjs';
 })
 export class AlertComponent implements OnInit {
   messages: Array<any> = [];
-  private subscription!: Subscription;
 
   constructor(private alertService: AlertsService) {}
 
   ngOnInit() {
-    this.subscription = this.alertService.alert$.subscribe((message) => {
+    this.alertService.alert$.subscribe((message) => {
       
       if (message != '' && !this.messages.find((msg)=>msg===message)) {
         this.messages.push(message);

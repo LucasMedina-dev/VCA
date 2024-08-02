@@ -1,0 +1,23 @@
+<ng-template [ngIf]="message!=''">
+    <div class="absolute z-50 top-0 w-full h-full grid place-items-center">
+        <div class="absolute z-40 w-dvw h-dvh bg-gray-500 bg-opacity-50" (click)="message=''" ></div>
+        <div class="absolute z-50 grid place-items-center fadeInAnimation">
+            <div class="size-80 grid place-items-center bg-slate-800 rounded-sm border border-zinc-500 drop-shadow-md">
+                <div class="flex flex-col items-center justify-center gap-y-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle stroke-red-500" width="44" height="44" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 9v4" />
+                        <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                        <path d="M12 16h.01" />
+                    </svg>
+                    <h2 class="text-center text-white font-semibold text-sm">{{message}}</h2>
+                </div>
+                <div class="w-full flex flex-row justify-around">
+                    <button class="rounded-sm border border-gray-500 px-9 py-2 bg-gray-400 hover:bg-gray-500 transition-all text-black text-xs" (click)="response(false)">Close</button>
+                    <button class="rounded-sm border border-gray-500 px-9 py-2 bg-red-400 hover:bg-red-500 transition-all text-black text-xs" (click)="response(true)">Accept</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</ng-template>
