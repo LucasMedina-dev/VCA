@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,6 +12,7 @@ import DomainStruct from '../../structures/domainStruct';
 import { DomainService } from '../../../services/domain.service';
 import { AlertsService } from '../../../services/alerts.service'
 import { AlertComponent } from "../../components/alert/alert.component";
+import { first } from 'rxjs';
 
 @Component({
     selector: 'app-creation-form',
@@ -22,6 +23,7 @@ import { AlertComponent } from "../../components/alert/alert.component";
 })
 export class CreationFormComponent implements OnInit {
   @Output() closeWindow = new EventEmitter<boolean>();
+  @Output() counterCreated= new EventEmitter<boolean>();
   awaitChanges : boolean = false;
   loading: boolean = false;
   userData: any;
@@ -64,14 +66,14 @@ export class CreationFormComponent implements OnInit {
       this.domainService.postDomain(this.domainData).subscribe({
         next:(data)=>{
           setTimeout(()=>{
-            this.alert.showAlert("Domain created sucessfully.")
+            this.alert.showAlert("Counter created sucessfully.")
             this.loading=false;
-            window.location.reload()
+            this.counterCreated.emit(true)
           }, 3000)
         },
         error: (error)=>{
           if(error.status===500){
-            this.alert.showAlert('Domain name already exists.')
+            this.alert.showAlert('Counter name already exists.')
             this.awaitChanges=true
           }
           this.loading=false;
@@ -90,6 +92,6 @@ export class CreationFormComponent implements OnInit {
     this.awaitChanges=false
   }
   toggleSwitch(){
-    this.closeWindow.emit(false);
+    this.closeWindow.emit(false)
   }
 }

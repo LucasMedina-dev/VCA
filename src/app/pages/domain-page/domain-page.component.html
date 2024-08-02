@@ -6,7 +6,7 @@
         <app-add-button link="/pickup" title="Back"></app-add-button>
         <span class="pl-7 font-thin text-md text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
       </div>
-      <app-config-options [domainData]='config'></app-config-options>
+      <app-config-options [domainData]='config' (resetData)="resetData()"></app-config-options>
     </div>
     <div class="flex flex-wrap flex-row justify-center py-2 gap-y-2">
       <div class="flex grow items-start justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm">

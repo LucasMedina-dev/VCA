@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomainService } from '../../../services/domain.service';
 import { AlertsService } from '../../../services/alerts.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class ConfigOptionsComponent {
   @Input() domainData: any;
+  @Output() resetData= new EventEmitter<boolean>();
   private resetSubscription!: Subscription;
   private deleteSubscription!: Subscription;
   constructor(
@@ -51,10 +52,9 @@ export class ConfigOptionsComponent {
       });
   }
   resetDomainStats() {
-    this.alert.createAsk('You will reset all stats of this counter.');
+    this.alert.createAsk('You will reset all stats and visitors of this counter.');
     this.resetSubscription= this.alert.responseAlert$.subscribe({
       next: (response) => {
-        console.log(response)
         if (response) {
           this.domainService
             .resetDomainStats(this.domainData[0].domainId, this.domainData[2])
@@ -62,7 +62,7 @@ export class ConfigOptionsComponent {
               next: (data) => {
                 if (data.affectedRows != 0) {
                   this.alert.showAlert('Stats were reseted.');
-                  this.router.navigate(['pickup']);
+                  this.resetData.emit(true)
                 } else {
                   this.alert.showAlert("Counter doesn't have hits.");
                 }

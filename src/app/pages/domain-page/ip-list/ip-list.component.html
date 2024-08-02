@@ -15,12 +15,12 @@
   <table
     class="relative  grow bg-neutral-950 text-white text-xs font-thin text-center rounded-sm border-r border-neutral-950 overflow-y-auto"
   >
-    <thead class="sticky top-0 bg-neutral-950">
+    <thead class="sticky top-0 bg-gray-400 text-black border-b border-b-white">
       <tr *ngIf="visitors[0].visitorId!=null">
-        <th>Ip</th>
-        <th>Ubication</th>
-        <th>Dispositive</th>
-        <th>Date</th>
+        <th class="transition-all hover:cursor-pointer hover:bg-slate-950 hover:text-white" (click)="orderBy('visitorIp')">Ip</th>
+        <th class="transition-all hover:cursor-pointer hover:bg-slate-950 hover:text-white" (click)="orderBy('visitorUbication')">Ubication</th>
+        <th class="transition-all hover:cursor-pointer hover:bg-slate-950 hover:text-white" (click)="orderBy('dispositive')">Agent</th>
+        <th class="transition-all hover:cursor-pointer hover:bg-slate-950 hover:text-white" (click)="orderBy('visitorDate')">Date</th>
       </tr>
     </thead>
     <tbody class="h-32">
@@ -33,7 +33,9 @@
         <td>{{ visit.visitorDispositive }}</td>
         <td>{{ visit.visitorDate }}</td>
       </tr>
-      <tr *ngIf="visitors[0].visitorId===null">
+    </tbody>
+    <tbody *ngIf="visitors[0].visitorId===null">
+      <tr>
         No hits registered
       </tr>
     </tbody>

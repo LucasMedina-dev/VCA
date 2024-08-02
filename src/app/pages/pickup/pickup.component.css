@@ -1,6 +1,6 @@
 .creationAnimation{
     animation-name: fadeIn;
-    animation-duration: 150ms;
+    animation-duration: 250ms;
     animation-fill-mode: forwards;
 }
 @keyframes fadeIn {

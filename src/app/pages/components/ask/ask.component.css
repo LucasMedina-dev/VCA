@@ -8,6 +8,6 @@
         opacity: 0;
     }to{
         opacity: 100;
-        transform: translateY(-100px);
+        transform: translateY(-60px);
     }
 }

@@ -7,7 +7,7 @@ import { AddButtonComponent } from '../components/add-button/add-button.componen
 import { ConfigOptionsComponent } from './config-options/config-options.component';
 import { DomainService } from '../../services/domain.service';
 import { ChartViewComponent } from './chart-view/chart-view.component';
-import { last, Observable, of } from 'rxjs';
+import { last, Observable, of, Subscription } from 'rxjs';
 import { IpListComponent } from "./ip-list/ip-list.component";
 import { AlertsService } from '../../services/alerts.service';
 
@@ -30,6 +30,7 @@ import { AlertsService } from '../../services/alerts.service';
 ],
 })
 export class DomainPageComponent implements OnInit {
+  private subscription!: Subscription;
   lastWeekVisitors: any;
   lastHit: any;
   domainData: any;
@@ -40,7 +41,10 @@ export class DomainPageComponent implements OnInit {
   deleteOpened: boolean=false;
   constructor(private domainService: DomainService, private router : Router, private alertsService: AlertsService) {}
   ngOnInit(): void {
-    this.domainService.getDomain(location.pathname).subscribe({
+    this.getData()
+  }
+  getData(){
+    this.subscription= this.domainService.getDomain(location.pathname).subscribe({
       next: (data) => {
         if(data!=null){
           this.domainData = data.domainData;
@@ -50,8 +54,10 @@ export class DomainPageComponent implements OnInit {
           this.getMajorityCountry();
           this.getFan();
         }else{
+          this.alertsService.showAlert("Doesn't exists this counter.")
           this.router.navigate(['pickup']);
-        }       
+        }
+        this.subscription.unsubscribe()
       },
       error:()=>{
         this.router.navigate(['pickup']);
@@ -133,6 +139,9 @@ export class DomainPageComponent implements OnInit {
     } else {
       this.fan = 'No hits.';
     }
+  }
+  resetData() {
+    this.getData()
   }
   clipboard(stringToCopy: string, alert : string) {
     navigator.clipboard.writeText(stringToCopy)

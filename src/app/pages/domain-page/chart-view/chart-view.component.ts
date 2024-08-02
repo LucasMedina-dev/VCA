@@ -65,6 +65,7 @@ export class ChartViewComponent implements OnChanges {
         title: {
           text: '',
         },
+        tickInterval:1,
         lineColor: 'black',
         minorGridLineColor: 'black'
       },
