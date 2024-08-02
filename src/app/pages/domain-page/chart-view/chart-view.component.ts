@@ -30,7 +30,6 @@ export class ChartViewComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['hitData'] && changes['hitData'].currentValue) {
       this.show = true;
-      console.log(this.hitData.domainvisitors)
       this.loadChart(this.getHitsPerDay(this.hitData.domainvisitors));
     } else {
       this.show = false;

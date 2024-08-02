@@ -19,7 +19,7 @@
       <tr *ngIf="visitors[0].visitorId!=null">
         <th>Ip</th>
         <th>Ubication</th>
-        <th>Coords</th>
+        <th>Dispositive</th>
         <th>Date</th>
       </tr>
     </thead>
@@ -30,7 +30,7 @@
       >
         <td>{{ visit.visitorIp }}</td>
         <td>{{ visit.visitorUbication }}</td>
-        <td>{{ visit.visitorLat }} {{ visit.visitorLon }}</td>
+        <td>{{ visit.visitorDispositive }}</td>
         <td>{{ visit.visitorDate }}</td>
       </tr>
       <tr *ngIf="visitors[0].visitorId===null">
