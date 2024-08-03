@@ -65,10 +65,10 @@
       </div>
     </div>
     <div class="w-full flex flex-row flex-wrap justify-center mb-2 gap-2" [ngClass]="{'animate-pulse':!domainData}">
-      <div class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard('http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId, 'Domain endpoint copied!')">
-        <p *ngIf="domainData">{{'http://localhost:3000/domains/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId || 'Loading.'}}</p>
+      <div class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard('http://localhost:3000/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId, 'Domain endpoint copied!')">
+        <p *ngIf="domainData">{{'http://localhost:3000/hit/'+domainData.domain.domainId+'/'+domainData.domainstats.statId || 'Loading.'}}</p>
       </div>
-      <div class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard(domainData.domainkey.keyCode, 'Key copied!')">
+      <div class="grow w-1/2 bg-neutral-900 bg-opacity-90 text-center py-2 text-white font-thin text-xs rounded-sm min-w-80 cursor-pointer hover:text-black hover:font-semibold hover:bg-white" (click)="clipboard(domainData.domainkey.keyCode, 'API KEY copied!')">
         <p *ngIf="domainData">{{domainData.domainkey.keyCode || 'Loading.'}}</p>
       </div>
     </div>
