@@ -10,6 +10,7 @@ import { ChartViewComponent } from './chart-view/chart-view.component';
 import { last, Observable, of, Subscription } from 'rxjs';
 import { IpListComponent } from "./ip-list/ip-list.component";
 import { AlertsService } from '../../services/alerts.service';
+import { GuidePageComponent } from "../guide-page/guide-page.component";
 
 @Component({
   selector: 'app-domain-page',
@@ -26,7 +27,8 @@ import { AlertsService } from '../../services/alerts.service';
     ConfigOptionsComponent,
     ChartViewComponent,
     IpListComponent,
-    NgIf
+    NgIf,
+    GuidePageComponent
 ],
 })
 export class DomainPageComponent implements OnInit {
@@ -39,6 +41,7 @@ export class DomainPageComponent implements OnInit {
   fan!: string;
   resetOpened: boolean=false;
   deleteOpened: boolean=false;
+  showGuide: boolean= false;
   constructor(private domainService: DomainService, private router : Router, private alertsService: AlertsService) {}
   ngOnInit(): void {
     this.getData()
@@ -48,7 +51,7 @@ export class DomainPageComponent implements OnInit {
       next: (data) => {
         if(data!=null){
           this.domainData = data.domainData;
-          this.config = [data.domainData.domain, data.domainData.domainkey, data.domainData.domainstats.statId];
+          this.config = [data.domainData.domain, data.domainData.domainkey, data.domainData.domainstats.statId, this.showGuide];
           this.getLastWeekVisitors();
           this.getLastHit();
           this.getMajorityCountry();
@@ -139,6 +142,9 @@ export class DomainPageComponent implements OnInit {
     } else {
       this.fan = 'No hits.';
     }
+  }
+  redirectGuide() {
+    this.showGuide=!this.showGuide
   }
   resetData() {
     this.getData()

@@ -16,18 +16,24 @@ import { AlertsService } from '../../services/alerts.service';
     imports: [VcaTitleComponent, DomainCardComponent, NavigationButtonComponent, CommonModule, CreationFormComponent]
 })
 export class PickupPageComponent implements OnInit{
+
     private subscription!: Subscription; 
     domainList: Array<any>=[];
     createOpened: boolean=false;
+    loading!: boolean;
     constructor(private domainService : DomainService, private alertService : AlertsService){}
     ngOnInit(): void {
-        
+        this.loading=true
         this.subscription= this.domainService.getDomains().subscribe({
             next:(domains)=>{
                 if(domains.length===0){
-                    this.createOpened=true;
+                        this.createOpened=true;
                 }else{
-                    this.domainList=domains;
+                    setTimeout(() => {
+                        this.domainList=domains;
+                        this.loading=false;
+                    }, 1500);
+                    
                 }
                 this.subscription.unsubscribe()
             }

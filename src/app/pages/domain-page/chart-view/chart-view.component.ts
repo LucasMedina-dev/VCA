@@ -34,8 +34,6 @@ export class ChartViewComponent implements OnChanges {
     }
   }
   loadChart(insertData: any) {
-
-
     this.chart = new Chart({
       accessibility: {
         enabled: false,
@@ -58,6 +56,7 @@ export class ChartViewComponent implements OnChanges {
           text: '',
         },
         tickInterval: 1,
+        softMax: this.hitData.domainvisitors.length === 0 ? 999999999999999 : 5
       },
       xAxis: {
         title: {

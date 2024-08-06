@@ -1,74 +1,78 @@
 <app-vca-title></app-vca-title>
-<main class="relative w-full h-[90%] flex flex-col items-center justify-start pb-8">
-  <div class="flex flex-col w-full px-2 xl:w-3/4 overflow-auto py-4">
+<main class=" w-full h-[90%] flex flex-col items-center justify-start pb-8 transition-all">
+  <div class="relative flex flex-col w-full px-2 xl:w-3/4 py-4 overflow-visible">
     <div class="flex flex-row flex-wrap justify-between items-start mb-2 gap-y-2">
       <div class="flex flex-row items-center gap-x-3">
         <app-navigation-button link="/pickup" title="Back"></app-navigation-button>
         <span class="pl-7 font-thin text-md text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
       </div>
-      <app-config-options [domainData]='config' (resetData)="resetData()"></app-config-options>
+      <app-config-options [domainData]='config' [showGuide]="showGuide" (resetData)="resetData()" (goGuide)="redirectGuide()"></app-config-options>
     </div>
-    <div class="w-full bg-slate-300 rounded-sm" [ngClass]="{'animate-pulse':!domainData}">
-      <div class="flex flex-wrap flex-row justify-center py-2 gap-y-2 drop-shadow-md">
-        <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
-          <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m0 6V9m3 6H9"></path>
-              </svg>
-              Total Hits
-          </span>
-          <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{domainData ? domainData.domainstats.totalHits : 0}}</span>
+    <div class="transition-all overflow-hidden" [ngClass]="{'hide':showGuide}">
+      <div class="w-full bg-slate-300 rounded-sm" [ngClass]="{'animate-pulse':!domainData}">
+        <div class="flex flex-wrap flex-row justify-center py-2 gap-y-2 drop-shadow-md">
+          <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
+            <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m0 6V9m3 6H9"></path>
+                </svg>
+                Total Hits
+            </span>
+            <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{domainData ? domainData.domainstats.totalHits : 0}}</span>
+          </div>
+          <div class="flex grow justify-between w-full max-w-80 bg-[#1F223B] p-2 rounded-sm" >
+            <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.586 4.586a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414L9 10M5 10l4.586-4.586a1 1 0 011.414 0l5 5a1 1 0 010 1.414L15 10M21 21h-6M9 3h6M3 21h6"></path>
+                </svg>
+                Different Visitors
+            </span>
+            <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{domainData ? domainData.domainstats.differentVisitors : 0}}</span>
+          </div>
+          <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
+            <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2H3V4zM3 8h18v12a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm3 4h12"></path>
+                </svg>
+                Last Week Hits
+            </span>
+            <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{lastWeekVisitors || 0}}</span>
+          </div>
+          <div class="flex grow justify-between w-full max-w-80 bg-[#1F223B] p-2 rounded-sm" >
+            <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"></path>
+                </svg>
+                Last Hit
+            </span>
+            <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{lastHit || 'Loading.'}}</span>
+          </div>
+          <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
+            <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5 5L21 5"></path>
+                </svg>
+                Majority Visitors
+            </span>
+            <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{majority || 'Loading.'}}</span>
+          </div>
+          <div class="flex grow justify-between w-full max-w-80 bg-[#1F223B] p-2 rounded-sm">
+            <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Best Fan
+            </span>
+            <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{fan || 'Loading.'}}</span>
+          </div>
         </div>
-        <div class="flex grow justify-between w-full max-w-80 bg-[#1F223B] p-2 rounded-sm" >
-          <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.586 4.586a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414L9 10M5 10l4.586-4.586a1 1 0 011.414 0l5 5a1 1 0 010 1.414L15 10M21 21h-6M9 3h6M3 21h6"></path>
-              </svg>
-              Different Visitors
-          </span>
-          <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{domainData ? domainData.domainstats.differentVisitors : 0}}</span>
-        </div>
-        <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
-          <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2H3V4zM3 8h18v12a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm3 4h12"></path>
-              </svg>
-              Last Week Hits
-          </span>
-          <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{lastWeekVisitors || 0}}</span>
-        </div>
-        <div class="flex grow justify-between w-full max-w-80 bg-[#1F223B] p-2 rounded-sm" >
-          <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"></path>
-              </svg>
-              Last Hit
-          </span>
-          <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{lastHit || 'Loading.'}}</span>
-        </div>
-        <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
-          <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}" >
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5 5L21 5"></path>
-              </svg>
-              Majority Visitors
-          </span>
-          <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{majority || 'Loading.'}}</span>
-        </div>
-        <div class="flex grow justify-between w-full max-w-80 bg-[#1F223B] p-2 rounded-sm">
-          <span class="text-white font-thin text-xs flex flex-row justify-between" [ngClass]="{'opacity-0' : !domainData}">
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              Best Fan
-          </span>
-          <span class="text-white font-semibold text-sm" [ngClass]="{'opacity-0' : !domainData}">{{fan || 'Loading.'}}</span>
-        </div>
+        <span class="h-px w-3/4 mx-auto bg-slate-950 bg-opacity-30 drop-shadow-lg flex mt-4"></span>
+        <app-chart-view [hitData]="domainData"></app-chart-view>
       </div>
-      <app-chart-view [hitData]="domainData"></app-chart-view>
+      <div class="w-full h-64 mt-2" [ngClass]="{'bg-black animate-pulse':!domainData}">
+        <app-ip-list [visitors]="domainData.domainvisitors" *ngIf="domainData"></app-ip-list>
+      </div>
     </div>
-    <div class="w-full h-64 mt-2" [ngClass]="{'bg-black animate-pulse':!domainData}">
-      <app-ip-list [visitors]="domainData.domainvisitors" *ngIf="domainData"></app-ip-list>
-    </div>
+    <app-guide-page [domainData]="config" [ngClass]="{'hide':!showGuide}" *ngIf="showGuide" class="h-full flex transition-all"></app-guide-page>
   </div>
 </main>

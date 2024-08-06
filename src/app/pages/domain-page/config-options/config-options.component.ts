@@ -1,20 +1,22 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { DomainService } from '../../../services/domain.service';
 import { AlertsService } from '../../../services/alerts.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-config-options',
   standalone: true,
-  imports: [NgClass, NgIf],
+  imports: [NgClass, NgIf, RouterModule],
   templateUrl: './config-options.component.html',
   styleUrl: './config-options.component.css',
 })
 export class ConfigOptionsComponent implements OnChanges {
   @Input() domainData!:any;
+  @Input() showGuide = false;
   @Output() resetData= new EventEmitter<boolean>();
+  @Output() goGuide= new EventEmitter<boolean>();
   domainStatus= "Counter status";
   keyStatus = "Key status";
   private resetSubscription!: Subscription;
@@ -24,6 +26,9 @@ export class ConfigOptionsComponent implements OnChanges {
     private alert: AlertsService,
     private router: Router
   ) {}  
+  guideEmit() {
+    this.goGuide.emit(true)
+  }
   ngOnChanges(): void {
     if(this.domainData){
       this.domainStatus=this.domainData[0].domainStatus ? 'Counter activated.' : 'Counter deactivated.'
