@@ -1,0 +1,12 @@
+.creationAnimation{
+    animation-name: fadeIn;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 100;
+    }
+}

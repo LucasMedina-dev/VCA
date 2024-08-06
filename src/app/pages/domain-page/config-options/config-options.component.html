@@ -1,0 +1,46 @@
+<div class="flex flex-row justify-end flex-wrap gap-x-3 gap-y-2 transition-all ease-in-out">
+    <button class="px-4 py-2 drop-shadow-md transition-all rounded-sm border-2 font-extralight hover:font-semibold text-xs bg-slate-800 text-white border-white hover:bg-slate-50 hover:text-slate-950" (click)="guideEmit()">{{showGuide ? 'Statistics' : 'How to use'}}</button>
+    <button  *ngIf="domainData!=null" class="py-2 px-4 flex flex-row items-end gap-x-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:drop-shadow-white hover:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">
+        COUNTER
+        <svg *ngIf="domainData[0].domainStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l5 5l10 -10" />
+          </svg>
+          <svg *ngIf="!domainData[0].domainStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+    </button>
+    <button  *ngIf="domainData!=null" class="py-2 px-4 flex flex-row items-end gap-x-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:drop-shadow-white hover:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus}" (click)="switchKeyStatus()">
+        API KEY
+        <svg *ngIf="domainData[1].keyStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z" />
+            <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+            <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+        </svg>
+        <svg *ngIf="!domainData[1].keyStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-open size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 11m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
+            <path d="M12 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M8 11v-5a4 4 0 0 1 8 0" />
+        </svg>
+    </button>
+    <button  *ngIf="!domainData" class="py-2 px-4 flex flex-row items-end gap-x-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:drop-shadow-white hover:border-b-white bg-slate-100 animate-pulse">
+        COUNTER
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise    animate-spin size-4 stroke-black " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
+        </svg>
+    </button>
+    <button  *ngIf="!domainData" class="py-2 px-4 flex flex-row items-end gap-x-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:drop-shadow-white hover:border-b-white bg-slate-100 animate-pulse">
+        API KEY
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise animate-spin size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
+        </svg>
+    </button>
+    <button class="p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-sky-300 hover:bg-sky-100 font-extralight text-xs hover:border-b-white" (click)="resetDomainStats()">Reset stats.</button>
+    <button class="p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-white bg-red-800 hover:bg-red-600 font-extralight text-xs hover:border-b-white" (click)="deleteDomain()">Delete domain.</button>
+</div>

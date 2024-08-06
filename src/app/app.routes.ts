@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
-import { PickupComponent } from './pickup/pickup.component';
-import { CreationPageComponent } from './creation-page/creation-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { PickupPageComponent } from './pages/pickup-page/pickup-page.component';
+import { DomainPageComponent } from './pages/domain-page/domain-page.component';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { GuidePageComponent } from './pages/guide-page/guide-page.component';
 
 export const routes: Routes = [
-    {path:'', component:LandingComponent},
-    {path:'pickup', component:PickupComponent},
-    {path:'creation', component:CreationPageComponent},
-    {path:'**', component:LandingComponent}
+    {path:'', component:LandingPageComponent},
+    {path:'pickup', component:PickupPageComponent, canActivate:[AuthGuard]},
+    {path:'stats/:name', component:DomainPageComponent, canActivate:[AuthGuard]},
+    {path:'guide', component:GuidePageComponent, canActivate:[AuthGuard]},
+    {path:'**', component:LandingPageComponent, canActivate:[AuthGuard]}
 ];

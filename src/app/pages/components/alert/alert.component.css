@@ -1,0 +1,14 @@
+.insert{
+    animation-name: insert;
+    animation-duration: 200ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes insert {
+   from{
+    opacity: 0;
+   }to{
+    opacity: 100;
+    transform: translateY(1rem);
+   }
+}

@@ -1,0 +1,12 @@
+.fadeIn{
+    animation-name: fadeIn;
+    animation-duration: 150ms;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 100;
+    }
+}

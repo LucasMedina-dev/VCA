@@ -1,0 +1,44 @@
+<span class="absolute top-0 right-0 m-2 cursor-pointer leading-none" (click)="toggleSwitch()">
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x hover:stroke-red-600 transition-all" width="44" height="44" viewBox="0 0 24 24" stroke-width=".5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
+    <path d="M9 9l6 6m0 -6l-6 6" />
+  </svg>
+</span>
+<h2 class="text-white font-extralight">NEW COUNTER</h2>
+<form [formGroup]="domainGroup" class="flex flex-col w-full h-full gap-y-10 my-5">
+  <div class="flex flex-col">
+    <input
+      type="text"
+      autocomplete="off"
+      name="domainName"
+      placeholder="Domain name"
+      formControlName="domainName"
+      [ngClass]="{ 'bg-rose-900': !getField('domainName') || awaitChanges }"
+      (input)="enableSubmit()"
+      class="bg-[#242131] text-slate-200 placeholder-[#9F9F9F] drop-shadow-xl font-thin leading-none border-b border-b-black px-3 py-2 focus-visible:outline-none rounded"
+    />
+    <span
+      [ngClass]="{ '!text-orange-300': !getField('domainName') }"
+      class="text-sky-500 text-xs font-medium leading-none mt-1 pl-1"
+    >
+      The name must be only letters.<br>Length 4 to 40.
+    </span>
+  </div>
+
+  <button
+    [disabled]="domainGroup.invalid || loading || awaitChanges"
+    [ngClass]="{
+      'hover:border-gray-700 hover:!bg-opacity-100 !bg-opacity-30 drop-shadow-[0_0_1px_#374D9A] ': !domainGroup.invalid && !awaitChanges && !loading,
+      '!bg-opacity-100 text-black': loading
+    }"
+    class="relative px-10 py-2 mx-auto rounded bg-[#374D9A] bg-opacity-10 border border-blue-900 text-white font-thin transition-all"
+    (click)="createDomain()"
+  >
+    <span class="transition-all" [ngClass]="{'!text-gray-400': domainGroup.invalid || awaitChanges}">
+      {{!loading ? "Ready" : "Creating"}}
+    </span>
+    <span [ngClass]="{'animate-bounce ease-out': loading}" class="inline-block font-bold text-black">_</span>
+    <span [ngClass]="{'animate-pulse duration-75 opacity-100': loading}" class="opacity-0 absolute w-full h-full bg-none left-0 top-0 -z-10 shadow-[0_0_10px_white] shadow-white"></span>
+  </button>
+</form>
