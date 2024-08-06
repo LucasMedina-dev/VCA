@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VcaTitleComponent } from '../components/vca-title/vca-title.component';
-import { AddButtonComponent } from '../components/add-button/add-button.component';
+import { NavigationButtonComponent } from '../components/navigation-button/navigation-button.component';
 import { DomainCardComponent } from './domain-card/domain-card.component';
 import { CommonModule } from '@angular/common';
 import { DomainService } from '../../services/domain.service';
@@ -13,7 +13,7 @@ import { AlertsService } from '../../services/alerts.service';
     standalone: true,
     templateUrl: './pickup.component.html',
     styleUrl: './pickup.component.css',
-    imports: [VcaTitleComponent, DomainCardComponent, AddButtonComponent, CommonModule, CreationFormComponent]
+    imports: [VcaTitleComponent, DomainCardComponent, NavigationButtonComponent, CommonModule, CreationFormComponent]
 })
 export class PickupComponent implements OnInit{
     private subscription!: Subscription; 

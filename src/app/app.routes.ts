@@ -6,7 +6,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 
 export const routes: Routes = [
     {path:'', component:LandingComponent},
-    {path:'pickup', component:PickupComponent, canActivate:[AuthGuard]},
-    {path:'stats/:name', component:DomainPageComponent, canActivate:[AuthGuard]},
+    {path:'pickup', component:PickupComponent},
+    {path:'stats/:name', component:DomainPageComponent},
     {path:'**', component:LandingComponent}
 ];

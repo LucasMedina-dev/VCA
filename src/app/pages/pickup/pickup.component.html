@@ -1,7 +1,7 @@
 <app-vca-title></app-vca-title>
 <main class="relative h-5/6 w-full flex flex-col justify-start items-center pb-5">
     <div class="flex flex-col justify-start w-full h-full px-2 xl:w-3/4 gap-y-4 py-4">
-        <app-add-button class="w-max" title="New counter" (click)="newCounter()" *ngIf="domainList!=undefined ? domainList.length>0 : false"></app-add-button>
+        <app-navigation-button class="w-max" title="New counter" (click)="newCounter()" *ngIf="domainList!=undefined ? domainList.length>0 : false"></app-navigation-button>
         <div class="w-full flex flex-col justify-start items-stretch gap-y-3 overflow-y-auto scroll-smooth">
             <app-domain-card *ngFor="let domain of domainList" [domain]="domain"></app-domain-card>
         </div>

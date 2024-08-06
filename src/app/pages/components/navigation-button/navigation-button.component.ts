@@ -3,13 +3,13 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-add-button',
+  selector: 'app-navigation-button',
   standalone: true,
   imports: [RouterModule, NgIf],
-  templateUrl: './add-button.component.html',
-  styleUrl: './add-button.component.css'
+  templateUrl: './navigation-button.component.html',
+  styleUrl: './navigation-button.component.css'
 })
-export class AddButtonComponent {
+export class NavigationButtonComponent {
   @Input() link : any;
   @Input() title : any;
 }

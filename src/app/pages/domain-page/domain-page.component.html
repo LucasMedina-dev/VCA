@@ -3,7 +3,7 @@
   <div class="flex flex-col w-full px-2 xl:w-3/4 overflow-auto py-4">
     <div class="flex flex-row flex-wrap justify-between items-start mb-2 gap-y-2">
       <div class="flex flex-row items-center gap-x-3">
-        <app-add-button link="/pickup" title="Back"></app-add-button>
+        <app-navigation-button link="/pickup" title="Back"></app-navigation-button>
         <span class="pl-7 font-thin text-md text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
       </div>
       <app-config-options [domainData]='config' (resetData)="resetData()"></app-config-options>

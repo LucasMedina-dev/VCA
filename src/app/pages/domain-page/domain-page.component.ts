@@ -3,7 +3,7 @@ import { VcaTitleComponent } from '../components/vca-title/vca-title.component';
 import { NgClass, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { AddButtonComponent } from '../components/add-button/add-button.component';
+import { NavigationButtonComponent } from '../components/navigation-button/navigation-button.component';
 import { ConfigOptionsComponent } from './config-options/config-options.component';
 import { DomainService } from '../../services/domain.service';
 import { ChartViewComponent } from './chart-view/chart-view.component';
@@ -22,7 +22,7 @@ import { AlertsService } from '../../services/alerts.service';
     NgIf,
     RouterModule,
     MatIconModule,
-    AddButtonComponent,
+    NavigationButtonComponent,
     ConfigOptionsComponent,
     ChartViewComponent,
     IpListComponent,
