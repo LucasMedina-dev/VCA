@@ -11,23 +11,24 @@ import { AlertsService } from '../../services/alerts.service';
 @Component({
     selector: 'app-pickup',
     standalone: true,
-    templateUrl: './pickup.component.html',
-    styleUrl: './pickup.component.css',
+    templateUrl: './pickup-page.component.html',
+    styleUrl: './pickup-page.component.css',
     imports: [VcaTitleComponent, DomainCardComponent, NavigationButtonComponent, CommonModule, CreationFormComponent]
 })
-export class PickupComponent implements OnInit{
+export class PickupPageComponent implements OnInit{
     private subscription!: Subscription; 
-    domainList!: Array<any>;
+    domainList: Array<any>=[];
     createOpened: boolean=false;
     constructor(private domainService : DomainService, private alertService : AlertsService){}
-
     ngOnInit(): void {
+        
         this.subscription= this.domainService.getDomains().subscribe({
             next:(domains)=>{
                 if(domains.length===0){
                     this.createOpened=true;
+                }else{
+                    this.domainList=domains;
                 }
-                this.domainList= domains
                 this.subscription.unsubscribe()
             }
         })
@@ -39,12 +40,15 @@ export class PickupComponent implements OnInit{
         this.createOpened=false;
         this.subscription= this.domainService.getDomains().subscribe({
             next:(domains)=>{
-                this.domainList.push(domains.pop())      
+                if(domains.length){
+                    this.domainList.push(domains.pop())
+                }
+                this.subscription.unsubscribe()
             }
         })
     }
     closeWindow(){
-        if(this.domainList.length>0){
+        if(this.domainList.length){
             this.createOpened=false
         }else{
             this.alertService.showAlert('You need to create a counter.')

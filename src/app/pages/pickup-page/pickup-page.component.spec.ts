@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DomainCardComponent } from './domain-card.component';
+import { PickupPageComponent } from './pickup-page.component';
 
-describe('DomainCardComponent', () => {
-  let component: DomainCardComponent;
-  let fixture: ComponentFixture<DomainCardComponent>;
+describe('PickupPageComponent', () => {
+  let component: PickupPageComponent;
+  let fixture: ComponentFixture<PickupPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DomainCardComponent]
+      imports: [PickupPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DomainCardComponent);
+    fixture = TestBed.createComponent(PickupPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

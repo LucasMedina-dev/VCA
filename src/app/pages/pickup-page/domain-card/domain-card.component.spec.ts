@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DomainCardComponent } from './domain-card.component';
 
-import { LandingComponent } from './landing.component';
-
-describe('LandingComponent', () => {
-  let component: LandingComponent;
-  let fixture: ComponentFixture<LandingComponent>;
+describe('DomainCardComponent', () => {
+  let component: DomainCardComponent;
+  let fixture: ComponentFixture<DomainCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingComponent]
+      imports: [DomainCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LandingComponent);
+    fixture = TestBed.createComponent(DomainCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

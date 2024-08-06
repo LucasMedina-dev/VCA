@@ -1,11 +1,16 @@
-<app-vca-title></app-vca-title>
-<main class="relative h-5/6 w-full flex flex-col justify-start items-center pb-5">
+<app-vca-title *ngIf="domainList.length" class="transition-all"></app-vca-title>
+<main class="relative h-5/6 w-full flex flex-col justify-start items-center pb-5" *ngIf="domainList.length">
     <div class="flex flex-col justify-start w-full h-full px-2 xl:w-3/4 gap-y-4 py-4">
         <app-navigation-button class="w-max" title="New counter" (click)="newCounter()" *ngIf="domainList!=undefined ? domainList.length>0 : false"></app-navigation-button>
         <div class="w-full flex flex-col justify-start items-stretch gap-y-3 overflow-y-auto scroll-smooth">
-            <app-domain-card *ngFor="let domain of domainList" [domain]="domain"></app-domain-card>
+            <app-domain-card  *ngFor="let domain of domainList" [domain]="domain"></app-domain-card>
         </div>
     </div>
+</main>
+<main *ngIf="!domainList.length" class="h-full w-full grid place-items-center">
+    <h1 class="font-extralight text-2xl text-center animate-pulse drop-shadow-md">
+        VISITOR COUNTER <span class="font-medium text-2xl">API_</span>
+    </h1>
 </main>
 <ng-template #createCounter [ngIf]="createOpened">
     <div class="absolute top-0 w-full h-full grid place-items-center opacity-0 creationAnimation">

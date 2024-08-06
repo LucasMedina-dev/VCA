@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import DomainStruct from '../../structures/domainStruct';
 import { AlertsService } from '../../../services/alerts.service';
 
 @Component({

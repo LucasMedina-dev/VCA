@@ -26,8 +26,8 @@ export class ConfigOptionsComponent implements OnChanges {
   ) {}  
   ngOnChanges(): void {
     if(this.domainData){
-      this.domainStatus=this.domainData[0].domainStatus
-      this.domainStatus=this.domainData[1].keyStatus
+      this.domainStatus=this.domainData[0].domainStatus ? 'Counter activated.' : 'Counter deactivated.'
+      this.keyStatus=this.domainData[1].keyStatus ? 'API KEY active.' : 'API KEY inactive.'
     }
   }
   switchKeyStatus() {
@@ -35,6 +35,7 @@ export class ConfigOptionsComponent implements OnChanges {
       next: (data) => {
         if (data.affectedRows === 1) {
           this.domainData[1].keyStatus = !this.domainData[1].keyStatus;
+          this.keyStatus= this.domainData[1].keyStatus ? 'API KEY active.' : 'API KEY inactive.'
           this.alert.showAlert(
             'Key is now ' +
               (this.domainData[1].keyStatus ? 'required.' : 'not required.')
@@ -50,6 +51,7 @@ export class ConfigOptionsComponent implements OnChanges {
         next: (data) => {
           if (data.affectedRows === 1) {
             this.domainData[0].domainStatus = !this.domainData[0].domainStatus;
+            this.domainStatus= this.domainData[0].domainStatus ? 'Counter activated.' : 'Counter deactivated.'
             this.alert.showAlert(
               'Counter is now ' +
                 (this.domainData[0].domainStatus ? 'active.' : 'disabled.')

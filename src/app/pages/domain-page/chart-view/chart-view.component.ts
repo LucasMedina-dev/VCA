@@ -3,12 +3,10 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { ChartModule } from 'angular-highcharts';
 import { Chart } from 'angular-highcharts';
-import Highcharts from 'highcharts';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({

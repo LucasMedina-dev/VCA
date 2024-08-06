@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavigationButtonComponent } from './navigation-button.component';
+import { GuidePageComponent } from './guide-page.component';
 
-describe('AddButtonComponent', () => {
-  let component: NavigationButtonComponent;
-  let fixture: ComponentFixture<NavigationButtonComponent>;
+describe('GuidePageComponent', () => {
+  let component: GuidePageComponent;
+  let fixture: ComponentFixture<GuidePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavigationButtonComponent]
+      imports: [GuidePageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NavigationButtonComponent);
+    fixture = TestBed.createComponent(GuidePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,7 +12,6 @@ import DomainStruct from '../../structures/domainStruct';
 import { DomainService } from '../../../services/domain.service';
 import { AlertsService } from '../../../services/alerts.service'
 import { AlertComponent } from "../../components/alert/alert.component";
-import { first } from 'rxjs';
 
 @Component({
     selector: 'app-creation-form',

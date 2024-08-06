@@ -6,10 +6,10 @@ import { AuthService } from '@auth0/auth0-angular';
   selector: 'app-landing',
   standalone: true,
   imports: [],
-  templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css',
+  templateUrl: './landing-page.component.html',
+  styleUrl: './landing-page.component.css',
 })
-export class LandingComponent {
+export class LandingPageComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   login() {
