@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class DomainService {
   userId: any;
-  endpoint : string = "https://vca-server.vercel.app/";
+  endpoint : string = "https://vcaserver.onrender.com/";
   constructor(private auth: AuthService, private http: HttpClient) { }
 
 
