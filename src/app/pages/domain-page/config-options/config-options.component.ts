@@ -38,7 +38,7 @@ export class ConfigOptionsComponent implements OnChanges {
   switchKeyStatus() {
     this.domainService.switchKeyStatus(this.domainData[1].keyId).subscribe({
       next: (data) => {
-        if (data.affectedRows === 1) {
+        if (data[0][0].affectedRows === 1) {
           this.domainData[1].keyStatus = !this.domainData[1].keyStatus;
           this.keyStatus= this.domainData[1].keyStatus ? 'API KEY active.' : 'API KEY inactive.'
           this.alert.showAlert(
@@ -54,7 +54,7 @@ export class ConfigOptionsComponent implements OnChanges {
       .switchDomainStatus(this.domainData[0].domainId)
       .subscribe({
         next: (data) => {
-          if (data.affectedRows === 1) {
+          if (data[0][0].affectedRows === 1) {
             this.domainData[0].domainStatus = !this.domainData[0].domainStatus;
             this.domainStatus= this.domainData[0].domainStatus ? 'Counter activated.' : 'Counter deactivated.'
             this.alert.showAlert(
@@ -74,7 +74,7 @@ export class ConfigOptionsComponent implements OnChanges {
             .resetDomainStats(this.domainData[0].domainId, this.domainData[2])
             .subscribe({
               next: (data) => {
-                if (data.affectedRows != 0) {
+                if (data[0][0].affectedRows != 0) {
                   this.alert.showAlert('Stats were reseted.');
                   this.resetData.emit(true)
                 } else {
@@ -97,7 +97,7 @@ export class ConfigOptionsComponent implements OnChanges {
             .deleteDomain(this.domainData[0].domainId)
             .subscribe({
               next: (data) => {
-                if (data.affectedRows != 0) {
+                if (data[0][0].affectedRows != 0) {
                   this.alert.showAlert('Domain deleted.');
                   this.router.navigate(['pickup']);
                 }
