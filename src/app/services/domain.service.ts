@@ -2,7 +2,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import DomainStruct from '../pages/structures/domainStruct';
 import { catchError, Observable, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'

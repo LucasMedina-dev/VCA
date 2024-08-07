@@ -7,7 +7,7 @@ import { NavigationButtonComponent } from '../components/navigation-button/navig
 import { ConfigOptionsComponent } from './config-options/config-options.component';
 import { DomainService } from '../../services/domain.service';
 import { ChartViewComponent } from './chart-view/chart-view.component';
-import { last, Observable, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IpListComponent } from "./ip-list/ip-list.component";
 import { AlertsService } from '../../services/alerts.service';
 import { GuidePageComponent } from "../guide-page/guide-page.component";
