@@ -21,21 +21,28 @@ export class PickupPageComponent implements OnInit{
     domainList: Array<any>=[];
     createOpened: boolean=false;
     loading!: boolean;
+    fail : boolean =false;
     constructor(private domainService : DomainService, private alertService : AlertsService){}
     ngOnInit(): void {
         this.loading=true
         this.subscription= this.domainService.getDomains().subscribe({
             next:(domains)=>{
-                if(domains.length===0){
+                if(!domains.error){
+                    if(domains.length===0){
                         this.createOpened=true;
+                    }else{
+                        setTimeout(() => {
+                            this.domainList=domains;
+                            this.loading=false;
+                        }, 1500);
+                    }
                 }else{
-                    setTimeout(() => {
-                        this.domainList=domains;
-                        this.loading=false;
-                    }, 1500);
-                    
+                    this.fail=true;
                 }
+                
                 this.subscription.unsubscribe()
+            },error:(err)=>{
+                console.log(err)
             }
         })
     }

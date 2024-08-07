@@ -7,7 +7,7 @@
         </div>
     </div>
 </main>
-<main *ngIf="loading" class="h-full w-full grid place-items-center">
+<main *ngIf="loading  && !fail" class="h-full w-full grid place-items-center">
     <h1 class="my-8 text-3xl text-white self-center animate-pulse drop-shadow-md cursor-default select-none">
         VISITOR COUNTER <span class="drop-shadow-[0_0_2px_gray] text-black font-extrabold">API_</span>
     </h1>
@@ -19,6 +19,16 @@
             <div class="size-96 grid place-items-center bg-slate-800 rounded-sm border border-zinc-500 drop-shadow-md">
                 <app-creation-form class="flex flex-col items-center p-3" (closeWindow)="closeWindow()" (counterCreated)="refreshData()"></app-creation-form>
             </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #failedConnection [ngIf]="fail">
+    <div class="absolute top-0 left-0 w-dvw h-dvh grid place-items-center">
+        <div>
+            <h1 class="my-8 text-3xl text-white self-center drop-shadow-md cursor-default select-none">
+                VISITOR COUNTER <span class="drop-shadow-[0_0_2px_gray] text-black font-extrabold">API_</span>
+            </h1>
+            <span class="">Sorry, connection to server failed!</span>
         </div>
     </div>
 </ng-template>
