@@ -1,10 +1,11 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ip-list',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass],
+  imports: [NgFor, NgIf, NgClass, FormsModule],
   templateUrl: './ip-list.component.html',
   styleUrl: './ip-list.component.css'
 })
@@ -14,7 +15,7 @@ export class IpListComponent implements OnChanges{
   @Input() visitors!: Array<any>
   groupedVisitors: { [date: string]: any[] } = {};
   filteredDates!: Array<any>;
-
+  selectedOption: string = 'All dates';
   ngOnInit() {
     this.groupVisitorsByDate();
   }
@@ -44,8 +45,12 @@ export class IpListComponent implements OnChanges{
     return Object.keys(this.groupedVisitors);
   }
 
-  getListByDate(date: string) {
-    this.filteredDates= this.visitors.filter((visitor:any)=> date === visitor.visitorDate)
+  getListByDate(option : any) {
+    if(!isNaN(option)){
+      this.filteredDates= this.visitors.filter((visitor:any)=> this.getDates()[option] === visitor.visitorDate)
+    }else if(option==='All dates'){
+      this.unfilterDates()
+    }
   }
   unfilterDates(){
     if(this.visitors[0].visitorId!=null){
