@@ -19,6 +19,7 @@ export class ConfigOptionsComponent implements OnChanges {
   @Output() goGuide= new EventEmitter<boolean>();
   domainStatus= "Counter status";
   keyStatus = "Key status";
+  buttons : boolean = false;
   private resetSubscription!: Subscription;
   private deleteSubscription!: Subscription;
   constructor(
@@ -26,9 +27,8 @@ export class ConfigOptionsComponent implements OnChanges {
     private alert: AlertsService,
     private router: Router
   ) {}  
-  guideEmit() {
-    this.goGuide.emit(true)
-  }
+  
+  
   ngOnChanges(): void {
     if(this.domainData){
       this.domainStatus=this.domainData[0].domainStatus ? 'Counter activated.' : 'Counter deactivated.'
@@ -107,5 +107,8 @@ export class ConfigOptionsComponent implements OnChanges {
         this.deleteSubscription.unsubscribe()
       }
     })
+  }
+  guideEmit() {
+    this.goGuide.emit(true)
   }
 }

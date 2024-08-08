@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class DomainService {
   userId: any;
-  endpoint : string = "https://vcaserver.onrender.com/";
+  endpoint : string = "http://localhost:3000/";
   constructor(private auth: AuthService, private http: HttpClient) { }
 
 

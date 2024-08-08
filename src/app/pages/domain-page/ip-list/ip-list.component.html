@@ -1,16 +1,9 @@
-<div class="relative flex flex-row justify-stretch h-64 overflow-y-auto">
-  <table
-    class="sticky top-0 w-min h-full bg-neutral-950 text-white text-xs font-thin text-center rounded-sm mr-2"
-  >
-    <tbody>
-      <td class="px-10 border-r-[1px] border-white h-48">
-        <tr class="cursor-pointer" (click)="unfilterDates()">All</tr>
-        <tr *ngFor="let date of getDates()">
-          <p (click)="getListByDate(date)" style="cursor: pointer">{{ date }}</p>
-        </tr>
-      </td>
-    </tbody>
-  </table>
+<div class="relative flex flex-col items-stretch h-64 overflow-y-auto">
+
+  <select [(ngModel)]="selectedOption" name="Dates" id="" class="w-60" (change)="getListByDate(selectedOption)" >
+    <option>All dates</option>
+    <option *ngFor="let date of getDates().reverse()" [value]="date">{{date}}</option>
+  </select>
   <table
     class="relative  grow bg-neutral-950 text-white text-xs font-thin text-center rounded-sm border-r border-neutral-950 overflow-y-auto"
   >
@@ -27,10 +20,10 @@
         *ngFor="let visit of filteredDates"
         class="border-b border-gray-600 py-1 z-10"
       >
-        <td>{{ visit.visitorIp }}</td>
-        <td>{{ visit.visitorUbication }}</td>
-        <td>{{ visit.visitorDispositive }}</td>
-        <td>{{ visit.visitorDate }}</td>
+        <td class="text-xs">{{ visit.visitorIp }}</td>
+        <td class="text-xs">{{ visit.visitorUbication }}</td>
+        <td class="text-xs">{{ visit.visitorDispositive }}</td>
+        <td class="text-xs">{{ visit.visitorDate }}</td>
       </tr>
     </tbody>
     <tbody *ngIf="visitors[0].visitorId===null">

@@ -34,7 +34,7 @@ export class PickupPageComponent implements OnInit{
                         setTimeout(() => {
                             this.domainList=domains;
                             this.loading=false;
-                        }, 1500);
+                        }, 1000);
                     }
                 }else{
                     this.fail=true;
