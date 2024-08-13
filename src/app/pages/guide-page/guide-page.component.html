@@ -5,18 +5,24 @@
     <div class="w-full flex flex-col justify-start self-center bg-gray-800 p-6 rounded-lg shadow-xl">
         <p class="bg-opacity-60 text-white text-left text-md md:text-lg font-semibold border-b border-b-slate-400 mb-4 pb-2">API DETAILS</p>
 
-        <div class="text-white text-left" *ngIf="domainData">
+        <div class="text-white text-left flex flex-col" *ngIf="domainData">
             <h3 class="text-md md:text-lg font-bold">Endpoint</h3>
-            <p class="mt-2 text-sm inline-block bg-gray-700 p-2 rounded-lg shadow-inner">
+            <p class="mt-2 text-sm inline-block bg-gray-700 p-2 rounded-lg shadow-inner w-max">
                 <span class="text-slate-200">/hit/{{domainData[0].domainId}}/{{domainData[2]}}</span>
                 <button class="ml-4 bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-2 px-3 rounded-lg shadow-md"
                         (click)="clipboard('https://vcaserver.onrender.com/hit/'+domainData[0].domainId+'/'+domainData[2], 'Counter endpoint copied!')">
-                    Copy Endpoint
+                    Copy endpoint.
                 </button>
             </p>
-
+            <p class="mt-2 text-sm inline-block bg-gray-700 p-2 rounded-lg shadow-inner w-max">
+                <span class="text-slate-200">/stats/{{domainData[0].domainId}}/{{domainData[2]}}</span>
+                <button class="ml-4 bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-2 px-3 rounded-lg shadow-md"
+                        (click)="clipboard('https://vcaserver.onrender.com/stats/'+domainData[0].domainId+'/'+domainData[2], 'Stats endpoint copied!')">
+                    Copy endpoint.
+                </button>
+            </p>
             <h3 class="mt-6 text-md md:text-lg font-bold">API Key</h3>
-            <p class="mt-2 text-sm inline-block bg-gray-700 p-2 rounded-lg shadow-inner">
+            <p class="mt-2 text-sm bg-gray-700 p-2 rounded-lg shadow-inner w-max">
                 <span class="text-slate-200">{{domainData[1].keyCode}}</span>
                 <button class="ml-4 bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-2 px-3 rounded-lg shadow-md" (click)="clipboard(domainData[1].keyCode, 'API KEY copied!')">Copy API KEY
                 </button>
@@ -24,14 +30,9 @@
 
             <h3 class="mt-6 text-md md:text-lg font-bold">Methods</h3>
             <ul class="mt-2 list-disc list-inside">
-                <li class="text-sm">POST - Register a visit</li>
-                <li class="text-sm">GET - Retrieve statistics</li>
+                <li class="text-sm">GET to /hit - Register a visit</li>
+                <li class="text-sm">GET to /stats - Retrieve statistics</li>
             </ul>
-
-            <div class="mt-4 text-xs text-gray-400">
-                <p>To register a visit, send a POST request to the endpoint with the API_KEY in the headers.</p>
-                <p>To retrieve statistics, send a GET request to the same endpoint with the API_KEY in the headers.</p>
-            </div>
             <h3 class="mt-6 text-md md:text-lg font-bold">Privacy</h3>
             <div class="mt-4 text-xs text-gray-400">
                 <p>To protect the counter you can PAUSE it or use API KEY.</p>
