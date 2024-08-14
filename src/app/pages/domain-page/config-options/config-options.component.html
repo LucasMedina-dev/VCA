@@ -64,7 +64,7 @@
             </svg>
         </button>
     </div>
-    <div class="hidden z-[200] absolute top-12 left-0 w-full h-0 opacity-0 flex-col overflow-hidden bg-slate-950 bg-opacity-40 backdrop-blur-lg gap-y-3 transition-all px-5 pt-10" [ngClass]="{'!flex !h-full opacity-100' : buttons}">
+    <div class="hidden z-[200] absolute top-0 left-0 w-full h-0 opacity-0 flex-col overflow-hidden bg-slate-950 bg-opacity-40 backdrop-blur-lg gap-y-3 transition-all px-5 pt-10" [ngClass]="{'!flex !h-dvh opacity-100' : buttons}">
         <button  *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row justify-center items-end gap-x-1 md:gap-x-2  transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">
             COUNTER
             <svg *ngIf="domainData[0].domainStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -1,15 +1,15 @@
 <app-vca-title></app-vca-title>
 <main class=" w-full h-[90%] flex flex-col items-center justify-start transition-all pb-10 overflow-hidden">
-  <div class="h-full relative flex flex-col w-full px-2 xl:w-3/4">
-    <div class="flex flex-row flex-wrap justify-between items-start mb-2 gap-y-2 mt-4">
-      <div class="flex flex-row flex-wrap items-center gap-x-3 gap-y-2">
-        <app-navigation-button class="mr-4" link="/pickup" title="Back" *ngIf="!showGuide"></app-navigation-button>
-        <app-navigation-button class="mr-4" title='Back' *ngIf="showGuide" (click)="showGuide=false"></app-navigation-button>
-        <span class="text-left mx-auto font-thin text-sm sm:text-md text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
-      </div>
-      <app-config-options [domainData]='config' [showGuide]="showGuide" (resetData)="resetData()" (goGuide)="redirectGuide()"></app-config-options>
+  <div class="w-full xl:w-3/4 px-2 flex flex-row flex-wrap justify-between items-start mb-2 gap-y-2 mt-4 relative">
+    <div class="flex flex-row flex-wrap items-center gap-x-3 gap-y-2">
+      <app-navigation-button class="mr-4" link="/pickup" title="Back" *ngIf="!showGuide"></app-navigation-button>
+      <app-navigation-button class="mr-4" title='Back' *ngIf="showGuide" (click)="showGuide=false"></app-navigation-button>
+      <span class="text-left mx-auto font-thin text-sm sm:text-md text-white">{{domainData ? domainData.domain.domainName : ''}}</span>
     </div>
-    <div class="transition-all overflow-y-auto overflow-x-hidden" [ngClass]="{'hide':showGuide}">
+    <app-config-options  [domainData]='config' [showGuide]="showGuide" (resetData)="resetData()" (goGuide)="redirectGuide()"></app-config-options>
+  </div>
+  <div class="h-full w-full relative flex flex-col items-center px-2 xl:w-3/4 overflow-y-auto">
+    <div class="w-full transition-all duration-500 overflow-y-auto overflow-x-hidden z-30" [ngClass]="{'hide':showGuide, '-z-20':!showGuide}">
       <div class="w-full bg-slate-300 rounded-sm" [ngClass]="{'animate-pulse':!domainData}">
         <div class="flex flex-wrap flex-row justify-center py-2 gap-y-2 drop-shadow-md">
           <div class="flex grow justify-between w-full max-w-80 bg-[#2C2F48] p-2 rounded-sm" >
@@ -74,6 +74,6 @@
         <app-ip-list [visitors]="domainData.domainvisitors" *ngIf="domainData"></app-ip-list>
       </div>
     </div>
-    <app-guide-page [domainData]="config" [ngClass]="{'hide':!showGuide, 'fade-out':showGuide}" class="opacity-0 transition-all overflow-y-auto"></app-guide-page>
+    <app-guide-page [domainData]="config" [ngClass]="{'hide':!showGuide, 'fade-out':showGuide}" class="absolute h-full w-full opacity-0 z-30 px-2 overflow-y-auto transition-all duration-500"></app-guide-page>
   </div>
 </main>
