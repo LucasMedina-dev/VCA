@@ -81,15 +81,14 @@ export class DomainPageComponent implements OnInit {
     this.lastWeekVisitors = lastWeekVisitors.length;
   }
   getLastHit() {
-    const length = this.domainData.domainvisitors.length;
-    const lastHit = this.domainData.domainvisitors.slice(length - 1, length);
-    if (lastHit[0].visitorId != null) {
-      const date = new Date(lastHit[0].visitorDate);
+    const lastHit = this.domainData.domainvisitors[0];
+    if (lastHit.visitorId != null) {
+      const date = new Date(lastHit.visitorDate);
       this.lastHit = date.toLocaleDateString('es-ES', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
-      });
+      })
     } else {
       this.lastHit = 'No hits.';
     }
