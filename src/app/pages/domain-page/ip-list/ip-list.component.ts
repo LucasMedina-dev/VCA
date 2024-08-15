@@ -46,9 +46,9 @@ export class IpListComponent implements OnChanges{
   }
 
   getListByDate(option : any) {
-    if(!isNaN(option)){
-      this.filteredDates= this.visitors.filter((visitor:any)=> this.getDates()[option] === visitor.visitorDate)
-    }else if(option==='All dates'){
+    if(option!='All dates'){
+      this.filteredDates= this.visitors.filter((visitor:any)=> option === visitor.visitorDate)
+    }else{
       this.unfilterDates()
     }
   }
