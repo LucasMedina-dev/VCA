@@ -14,8 +14,10 @@
       <p class="text-white text-sm font-thin">Get statistics.</p>
     </div>
   </div>
-  <button class="bg-[#1D2034] text-sm text-white font-thin py-4 px-20 w-fit" (click)='login()'>
-    Get started
+  <button class="bg-[#222d79] text-sm text-white font-thin max-w-0 h-12 transition-all" [ngClass]="{'max-w-48 !bg-[#1a204d]' : button}" (click)='login()'>
+    <span class="opacity-0 transition-all" [ngClass]="{'opacity-100':button}">
+      {{button}}
+    </span>
   </button>
 </main>
 
