@@ -1,6 +1,7 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AlertsService } from '../../../services/alerts.service';
 
 @Component({
   selector: 'app-ip-list',
@@ -16,6 +17,7 @@ export class IpListComponent implements OnChanges{
   groupedVisitors: { [date: string]: any[] } = {};
   filteredDates!: Array<any>;
   selectedOption: string = 'All dates';
+  constructor(private alertsService : AlertsService) {}
   ngOnInit() {
     this.groupVisitorsByDate();
   }
@@ -74,5 +76,9 @@ export class IpListComponent implements OnChanges{
         return 0;
       }
     });
+  }
+  clipboardObject(stringToCopy: Object, alert : string) {
+    navigator.clipboard.writeText(JSON.stringify(stringToCopy))
+    this.alertsService.showAlert(alert || "Copied!")
   }
 }
