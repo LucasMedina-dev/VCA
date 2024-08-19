@@ -1,10 +1,10 @@
 <div class="lg:inline hidden">
     <div class="flex flex-row justify-end flex-wrap gap-x-3 gap-y-2 transition-all ease-in-out">
-        <button class="w-20 px-2 md:px-4 drop-shadow-md transition-all rounded-sm border-2 font-extralight hover:font-semibold text-xs bg-slate-800 text-white border-white hover:bg-slate-50 hover:text-slate-950" (click)="guideEmit()">
+        <button [disabled]="!domainData" [disabled]="!domainData" class="w-20 px-2 md:px-4 drop-shadow-md transition-all rounded-sm border-2 font-extralight hover:font-semibold text-xs bg-slate-800 text-white border-white hover:bg-slate-50 hover:text-slate-950" (click)="guideEmit()">
             <span *ngIf="!showGuide">API</span>
             <span *ngIf="showGuide">Stats</span>
         </button>
-        <button  *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2  transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">
+        <button [disabled]="!domainData" *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">
             COUNTER
             <svg *ngIf="domainData[0].domainStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -16,7 +16,7 @@
                 <path d="M6 6l12 12" />
               </svg>
         </button>
-        <button  *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2  transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus}" (click)="switchKeyStatus()">
+        <button [disabled]="!domainData" *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus}" (click)="switchKeyStatus()">
             API KEY
             <svg *ngIf="domainData[1].keyStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -31,28 +31,28 @@
                 <path d="M8 11v-5a4 4 0 0 1 8 0" />
             </svg>
         </button>
-        <button  *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2  transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white bg-slate-100 animate-pulse">
+        <button [disabled]="!domainData" *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white bg-slate-100 animate-pulse">
             COUNTER
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise    animate-spin size-4 stroke-black " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise animate-spin size-4 stroke-black " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
             </svg>
         </button>
-        <button  *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2  transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white bg-slate-100 animate-pulse">
+        <button [disabled]="!domainData" *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs hover:border-b-white bg-slate-100 animate-pulse">
             API KEY
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise animate-spin size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
             </svg>
         </button>
-        <button class="p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-sky-600 hover:bg-sky-400 font-extralight text-xs hover:border-b-white" (click)="resetDomainStats()">Reset stats.</button>
-        <button class="p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-white bg-red-800 hover:bg-red-600 font-extralight text-xs hover:border-b-white" (click)="deleteDomain()">Delete domain.</button>
+        <button [disabled]="!domainData" class="disabled:bg-opacity-70 p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-sky-600 hover:bg-sky-400 font-extralight text-xs hover:border-b-white" (click)="resetDomainStats()">Reset stats.</button>
+        <button [disabled]="!domainData" class="disabled:bg-opacity-70 p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-red-800 hover:bg-red-600 font-extralight text-xs hover:border-b-white" (click)="deleteDomain()">Delete domain.</button>
     </div>
     
 </div>
 <div class="inline lg:hidden">
     <div class="flex flex-row justify-end items-start gap-x-3">
-        <button class="w-20 px-4 py-1 md:px-4 drop-shadow-md transition-all rounded-sm border-2 font-extralight active:font-semibold text-xs bg-slate-800 text-white border-white active:bg-slate-50 active:text-slate-950" (click)="guideEmit()">
+        <button [disabled]="!domainData" class="w-20 px-4 py-1 md:px-4 drop-shadow-md transition-all rounded-sm border-2 font-extralight active:font-semibold text-xs bg-slate-800 text-white border-white active:bg-slate-50 active:text-slate-950" (click)="guideEmit()">
             <span *ngIf="!showGuide">API</span>
             <span *ngIf="showGuide">Stats</span>
         </button>
@@ -65,7 +65,7 @@
         </button>
     </div>
     <div class="hidden z-[200] absolute top-0 left-0 w-full h-0 opacity-0 flex-col overflow-hidden bg-slate-950 bg-opacity-40 backdrop-blur-lg gap-y-3 transition-all px-5 pt-10" [ngClass]="{'!flex !h-dvh opacity-100' : buttons}">
-        <button  *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row justify-center items-end gap-x-1 md:gap-x-2  transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">
+        <button [disabled]="!domainData" *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row justify-center items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[0].domainStatus, 'bg-[#ff6565]': !domainData[0].domainStatus}" (click)="switchDomainStatus()">
             COUNTER
             <svg *ngIf="domainData[0].domainStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -77,7 +77,7 @@
                 <path d="M6 6l12 12" />
                 </svg>
         </button>
-        <button  *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row justify-center items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus}" (click)="switchKeyStatus()">
+        <button [disabled]="!domainData" *ngIf="domainData!=null" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row justify-center items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white" [ngClass]="{'bg-[#49ff85]': domainData[1].keyStatus, 'bg-[#ff6565]': !domainData[1].keyStatus}" (click)="switchKeyStatus()">
             API KEY
             <svg *ngIf="domainData[1].keyStatus" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -92,21 +92,21 @@
                 <path d="M8 11v-5a4 4 0 0 1 8 0" />
             </svg>
         </button>
-        <button  *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 placeholder:transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white bg-slate-100 animate-pulse">
+        <button [disabled]="!domainData" *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 placeholder:transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white bg-slate-100 animate-pulse">
             COUNTER
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise    animate-spin size-4 stroke-black " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
             </svg>
         </button>
-        <button  *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white bg-slate-100 animate-pulse">
+        <button [disabled]="!domainData" *ngIf="!domainData" class="drop-shadow-2xl py-2 px-2 md:px-4 flex flex-row items-end gap-x-1 md:gap-x-2 transition-all rounded-sm border-b-2 border-b-black text-black font-extralight text-xs  active:drop-shadow-white  active:border-b-white bg-slate-100 animate-pulse">
             API KEY
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise animate-spin size-4 stroke-black" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
             </svg>
         </button>
-        <button class="p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-sky-300  active:bg-sky-100 font-extralight text-xs  active:border-b-white" (click)="resetDomainStats()">Reset stats.</button>
-        <button class="p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-white bg-red-800  active:bg-red-600 font-extralight text-xs  active:border-b-white" (click)="deleteDomain()">Delete domain.</button>
+        <button [disabled]="!domainData" class="disabled:opacity-25 p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-sky-300  active:bg-sky-100 font-extralight text-xs  active:border-b-white" (click)="resetDomainStats()">Reset stats.</button>
+        <button [disabled]="!domainData" class="disabled:opacity-25 p-2 drop-shadow-md transition-all rounded-sm border-b-2 border-b-black text-black bg-red-800  active:bg-red-600 font-extralight text-xs  active:border-b-white" (click)="deleteDomain()">Delete domain.</button>
     </div>
 </div>

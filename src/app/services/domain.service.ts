@@ -12,7 +12,6 @@ export class DomainService {
   endpoint : string = "https://vcaserver.onrender.com/";
   constructor(private auth: AuthService, private http: HttpClient) { }
 
-
   postDomain(domain: DomainStruct):Observable<any>{
     try {
       return this.http.post<any>(`${this.endpoint}domains/create`,domain)
