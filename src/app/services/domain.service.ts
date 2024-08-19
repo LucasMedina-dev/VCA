@@ -12,7 +12,6 @@ export class DomainService {
   endpoint : string = "http://localhost:3000/";
   constructor(private auth: AuthService, private http: HttpClient) { }
 
-
   postDomain(domain: DomainStruct):Observable<any>{
     try {
       return this.http.post<any>(`${this.endpoint}domains/create`,domain)

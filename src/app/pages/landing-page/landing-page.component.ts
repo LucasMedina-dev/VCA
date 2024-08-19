@@ -1,4 +1,5 @@
 import { NgClass } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -12,8 +13,9 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class LandingPageComponent implements OnInit {
   button!: string;
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private http: HttpClient) {}
   ngOnInit(): void {
+    this.http.get('http://localhost:3000/touch')
     this.auth.isAuthenticated$.subscribe({
       next: (value)=>{
         this.button= value ? 'Dashboard' : 'Get started';
