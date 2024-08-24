@@ -6,7 +6,8 @@
 
   <div class="flex flex-col grow ml-2 border-black border rounded-lg bg-sky-950 bg-opacity-30 overflow-hidden">
     <button class="relative bg-sky-950 flex flex-row justify-center items-center p-3 rounded-t-lg transition-all hover:bg-blue-900" (click)="goToDomain()">
-      <p class="font-light text-xs text-slate-300 leading-none text-ellipsis">{{ domain.domainName }}</p>
+      <p class="font-light text-xs text-slate-300 leading-none text-ellipsis hidden md:block">{{ domain.domainName ?? domain.domainName }}</p>
+      <p class="font-light text-xs text-slate-300 leading-none text-ellipsis block md:hidden">{{ domain.domainName.length > 20 ? domain.domainName.slice(0, 20) + '...' : domain.domainName }}</p>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-chevron-right size-5 absolute right-4 text-white">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M9 6l6 6l-6 6" />

@@ -15,7 +15,7 @@ export class LandingPageComponent implements OnInit {
   button!: string;
   constructor(private auth: AuthService, private router: Router, private http: HttpClient) {}
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/touch')
+    this.http.get('https://vcaserver.onrender.com/touch').subscribe()
     this.auth.isAuthenticated$.subscribe({
       next: (value)=>{
         this.button= value ? 'Dashboard' : 'Get started';

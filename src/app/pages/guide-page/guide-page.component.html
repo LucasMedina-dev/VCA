@@ -1,10 +1,12 @@
 <div class="mx-auto flex flex-col justify-start items-center">
-    <h2 class="py-8 text-3xl text-white self-center">
-        VISITOR COUNTER <span class="drop-shadow-[0_0_2px_gray] text-black font-extrabold">API_</span>
-    </h2>
+    
     <div class="w-full flex flex-col justify-start items-start self-center bg-gray-800 p-6 rounded-lg shadow-xl overflow-x-hidden">
-        <p class="bg-opacity-60 text-white text-left text-md md:text-lg font-semibold border-b border-b-slate-400 mb-4 pb-2">API DETAILS</p>
-
+        <div class="w-full flex flex-row justify-between items-start">
+            <p class="bg-opacity-60 text-white text-left text-md md:text-lg font-semibold border-b border-b-slate-400 mb-4 pb-2">API DETAILS</p>
+            <h2 class="translate-y-[-2px] text-xl md:text-2xl text-white text-right">
+                VISITOR COUNTER <span class="drop-shadow-[0_0_2px_gray] text-black font-extrabold">API_</span>
+            </h2>
+        </div>
         <div class="text-white text-left flex flex-col " *ngIf="domainData">
             <h3 class="text-md md:text-lg font-bold">Endpoint</h3>
             <p class="mt-2 text-sm bg-gray-700 gap-x-6 p-2 rounded-lg shadow-inner flex flex-row flex-wrap justify-start max-w-max">

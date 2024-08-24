@@ -1,18 +1,13 @@
 <main
   class="relative w-3/4 m-auto h-dvh flex flex-col justify-center"
 >
-  <h1 class="font-extralight text-5xl drop-shadow-md">
-    VISITOR COUNTER <span class="font-medium text-5xl">API_</span>
+  <h1 class="font-extralight text-5xl drop-shadow-md text-white">
+    VISITOR COUNTER <span class="font-medium text-black text-5xl">API_</span>
   </h1>
-  <div class="space-y-5 py-8 drop-shadow-md">
-    <div>
-      <p class="text-white text-sm font-thin">Register fast.</p>
-      <p class="text-white text-sm font-thin">Use for free.</p>
-    </div>
-    <div>
-      <p class="text-white text-sm font-thin">Post visitors.</p>
-      <p class="text-white text-sm font-thin">Get statistics.</p>
-    </div>
+  <div class="space-y-3 pl-5 mt-6 mb-10 drop-shadow-md">
+      <p class=" text-white text-sm font-thin drop-shadow-sm">Create multiple counters</p>
+      <p class=" text-white text-sm font-thin drop-shadow-sm">Register counts fetching to an endpoint!</p>
+      <p class=" text-white text-sm font-thin drop-shadow-sm">Get list and metrics!</p>
   </div>
   <button class="bg-[#222d79] text-sm text-white font-thin max-w-0 h-12 transition-all" [ngClass]="{'max-w-48 !bg-[#1a204d]' : button}" (click)='login()'>
     <span class="opacity-0 transition-all" [ngClass]="{'opacity-100':button}">
