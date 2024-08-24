@@ -18,11 +18,14 @@
     <tbody class="h-32">
       <tr
         *ngFor="let visit of filteredDates"
-        class="border-b border-gray-600 py-1 z-10"
+        class="border-b border-gray-600 py-1 z-10 active:text-black sm:hover:text-black active:bg-white sm:hover:bg-white active:font-bold sm:hover:font-bold transition-all cursor-pointer"
+        (click)="clipboardObject(visit, 'Row copied')"
       >
         <td class="text-xs">{{ visit.visitorIp }}</td>
         <td class="text-xs">{{ visit.visitorUbication }}</td>
-        <td class="text-xs">{{ visit.visitorDispositive }}</td>
+        <td class="text-xs">
+          {{ visit.visitorDispositive.length > 35 ? visit.visitorDispositive.slice(0, 35) + '...' : visit.visitorDispositive }}
+        </td>
         <td class="text-xs">{{ visit.visitorDate }}</td>
       </tr>
     </tbody>
