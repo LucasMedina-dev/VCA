@@ -1,8 +1,9 @@
-<div class="w-full h-[10%] flex flex-col items-center bg-white bg-opacity-20">
-    <div class="my-auto px-2 xl:w-3/4">
+<div class="w-full h-[10%] bg-white bg-opacity-20">
+    <div class="h-full m-auto px-2 xl:w-3/4 flex flex-row justify-between items-center">
         <button routerLink="" class="text-5xl font-extralight text-slate-50">
             VC<span class="font-semibold text-slate-950">A_</span>
         </button>
+        <app-navigation-button [title]="'Log out'" [class]="'!bg-black !text-white !border-l-0 border-r-4 !border-r-white hover:!bg-white hover:!text-black hover:!border-r-black'" (click)="logOut()"></app-navigation-button>
     </div>
 </div>
 
