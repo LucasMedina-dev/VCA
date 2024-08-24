@@ -15,7 +15,9 @@ export const appConfig: ApplicationConfig = {
       clientId: 'gVVNIKhgO4o3Agz7A5BftqCvSh6UrW9J',
       authorizationParams: {
         redirect_uri: window.location.origin
-      }
+      },
+      cacheLocation: 'localstorage',
+      skipRedirectCallback: true
     }), 
     provideAnimationsAsync(),
     provideHttpClient()
