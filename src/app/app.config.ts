@@ -16,8 +16,7 @@ export const appConfig: ApplicationConfig = {
       authorizationParams: {
         redirect_uri: window.location.origin
       },
-      cacheLocation: 'localstorage',
-      skipRedirectCallback: true
+      cacheLocation: 'localstorage'
     }), 
     provideAnimationsAsync(),
     provideHttpClient()
