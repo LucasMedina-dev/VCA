@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PickupPageComponent } from './pickup-page.component';
+import { PickupPageComponent } from './dashboard-page.component';
 
 describe('PickupPageComponent', () => {
   let component: PickupPageComponent;

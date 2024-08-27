@@ -99,7 +99,7 @@ export class ConfigOptionsComponent implements OnChanges {
               next: (data) => {
                 if (data[0][0].affectedRows != 0) {
                   this.alert.showAlert('Domain deleted.');
-                  this.router.navigate(['pickup']);
+                  this.router.navigate(['dashboard']);
                 }
               },
             });
