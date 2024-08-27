@@ -9,13 +9,13 @@ import { Subscription } from 'rxjs';
 import { AlertsService } from '../../services/alerts.service';
 
 @Component({
-    selector: 'app-pickup',
+    selector: 'app-dashboard',
     standalone: true,
-    templateUrl: './pickup-page.component.html',
-    styleUrl: './pickup-page.component.css',
+    templateUrl: './dashboard-page.component.html',
+    styleUrl: './dashboard-page.component.css',
     imports: [VcaTitleComponent, DomainCardComponent, NavigationButtonComponent, CommonModule, CreationFormComponent]
 })
-export class PickupPageComponent implements OnInit{
+export class DashboardPageComponent implements OnInit{
 
     private subscription!: Subscription; 
     domainList: Array<any>=[];

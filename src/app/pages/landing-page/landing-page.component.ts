@@ -27,7 +27,7 @@ export class LandingPageComponent implements OnInit {
     this.auth.isAuthenticated$.subscribe({
       next: (data)=>{
         if(data){
-          this.router.navigate(['pickup'])
+          this.router.navigate(['dashboard'])
         }else{
           this.auth.loginWithRedirect();
         }
