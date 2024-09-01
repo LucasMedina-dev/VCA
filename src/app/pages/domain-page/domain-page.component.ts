@@ -58,12 +58,12 @@ export class DomainPageComponent implements OnInit {
           this.getFan();
         }else{
           this.alertsService.showAlert("Doesn't exists this counter.")
-          this.router.navigate(['pickup']);
+          this.router.navigate(['dashboard']);
         }
         this.subscription.unsubscribe()
       },
       error:()=>{
-        this.router.navigate(['pickup']);
+        this.router.navigate(['dashboard']);
       }
     });
   }
